@@ -8,3 +8,10 @@
   margin-right: auto;
   margin-top: 25px;
 }
+
+@media screen and (max-width: 880px) {
+  .element__title {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}

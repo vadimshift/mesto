@@ -3,3 +3,8 @@
   margin-top: 41px;
   max-width: 880px;
 }
+@media screen and (max-width: 880px) {
+  .header__line {
+    margin-top: 31px;
+  }
+}

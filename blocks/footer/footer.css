@@ -3,3 +3,19 @@
   margin-top: 67px;
   margin-bottom: 60px;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-left: 19px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    max-width: 282px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}

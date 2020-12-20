@@ -6,3 +6,10 @@
   opacity: 0.2;
   border: 1px solid #000000;
 }
+
+@media screen and (max-width: 768px) {
+  .popup__edit-form-line {
+    max-width: 238px;
+
+  }
+}

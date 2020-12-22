@@ -1,6 +1,7 @@
 let editButton = document.querySelector('.profile__edit-button')
 let openPopup = document.querySelector('.popup')
 let closePopup = document.querySelector('.popup__close-button')
+let submitBtn = document.querySelector('.popup__submit-button')
 
 editButton.addEventListener('click', () => {
   openPopup.classList.add('popup_active')
@@ -25,14 +26,25 @@ function formSubmitHandler(evt) {
   let jobInput = formElement.querySelector('.popup__edit-about-me')// Воспользуйтесь инструментом .querySelector()
 
   // Получите значение полей из свойства value
-  nameInput.value
-  jobInput.value
+  let editName = nameInput.value
+  let editAbout = jobInput.value
 
   // Выберите элементы, куда должны быть вставлены значения полей
+  let newNameInput = formElement.querySelector('.popup__edit-name')
+  let newJobInput = formElement.querySelector('.popup__edit-about-me')
 
   // Вставьте новые значения с помощью textContent
+  newNameInput.textContent = editName
+  newJobInput.textContent = editAbout
+
+  console.log(newNameInput)
+  console.log(newJobInput)
+
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+submitBtn.onsubmit = formElement.addEventListener('submit', formSubmitHandler);
+
+
+

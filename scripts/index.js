@@ -30,15 +30,12 @@ function formSubmitHandler(evt) {
   let editAbout = jobInput.value
 
   // Выберите элементы, куда должны быть вставлены значения полей
-  /*let newNameInput = formElement.querySelector('.profile-info__title')
-  let newJobInput = formElement.querySelector('.profile-info__subtitle')*/
+  let newNameInput = document.querySelector('.profile-info__title')
+  let newJobInput = document.querySelector('.profile-info__subtitle')
 
   // Вставьте новые значения с помощью textContent
-  /*newNameInput.textContent = editName
+  newNameInput.textContent = editName
   newJobInput.textContent = editAbout
-*/
-  console.log(editName)
-  console.log(editAbout)
 
 }
 

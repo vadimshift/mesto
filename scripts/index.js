@@ -36,7 +36,7 @@ function formSubmitHandler(evt) {
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName
   newJobInput.textContent = editAbout
-
+  console.log(newNameInput)
 }
 
 // Прикрепляем обработчик к форме:

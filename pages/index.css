@@ -29,5 +29,4 @@
 @import url(../blocks/popup/__edit-form-line/popup__edit-form-line.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_active/popup_active.css);
-@import url(../blocks/element/__like-button/_active/element__like-button_active.css);
-
+@import url(../blocks/profile-info/__edit/profile-info__edit.css);

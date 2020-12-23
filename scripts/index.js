@@ -36,12 +36,15 @@ function formSubmitHandler(evt) {
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName
   newJobInput.textContent = editAbout
-  console.log(newNameInput)
+
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
 
+submitBtn.addEventListener('click', () => {
+  openPopup.classList.remove('popup_active')
+})
 
 

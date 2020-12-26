@@ -3,7 +3,7 @@
   margin-top: 45px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0;
+  margin-bottom: 41px;
   max-height: 33px;
 }
 
@@ -11,5 +11,7 @@
   .header__logo {
     margin-left: 27px;
     margin-top: 28px;
+    max-width: 104px;
+    margin-bottom: 31px;
   }
 }

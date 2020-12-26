@@ -9,8 +9,9 @@
   padding: 0;
   background-color: #ffffff;
   cursor: pointer;
+  outline: none;
 }
 
 .element__like-button:hover {
-  opacity: .6;
+  opacity: .5;
 }

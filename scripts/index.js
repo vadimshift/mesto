@@ -1,50 +1,32 @@
 let editButton = document.querySelector('.profile__edit-button')
 let openPopup = document.querySelector('.popup')
 let closePopup = document.querySelector('.popup__close-button')
-let submitBtn = document.querySelector('.popup__submit-button')
-
-editButton.addEventListener('click', () => {
-  openPopup.classList.add('popup_active')
-})
-
-closePopup.addEventListener('click', () => {
-  openPopup.classList.remove('popup_active')
-})
-
-// Находим форму в DOM
 let formElement = document.querySelector('.popup__edit-form')
+let nameInput = formElement.querySelector('.popup__edit_input_name')
+let jobInput = formElement.querySelector('.popup__edit_input_about')
+let newNameInput = document.querySelector('.profile__title')
+let newJobInput = document.querySelector('.profile__subtitle')
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+function activatePopup() {
+  openPopup.classList.add('popup_active')
+}
+
+function disabledPopup() {
+  openPopup.classList.remove('popup_active')
+}
+
 function formSubmitHandler(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-
-  // Находим поля формы в DOM
-  let nameInput = formElement.querySelector('.popup__edit_input_name') // Воспользуйтесь инструментом .querySelector()
-  let jobInput = formElement.querySelector('.popup__edit_input_about')// Воспользуйтесь инструментом .querySelector()
-
+  evt.preventDefault();
   // Получите значение полей из свойства value
   let editName = nameInput.value
   let editAbout = jobInput.value
-
-  // Выберите элементы, куда должны быть вставлены значения полей
-  let newNameInput = document.querySelector('.profile__title')
-  let newJobInput = document.querySelector('.profile__subtitle')
-
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName
-  newJobInput.textContent = editAbout
-
+  newJobInput.textContent = editAbout, disabledPopup()
 }
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-
-submitBtn.addEventListener('click', () => {
-  openPopup.classList.remove('popup_active')
-})
-
+editButton.addEventListener('click', activatePopup)
+closePopup.addEventListener('click', disabledPopup)
 

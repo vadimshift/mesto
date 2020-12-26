@@ -18,58 +18,58 @@
     <main class="content">
       <section class="profile">
         <img class="profile__avatar" src="images/avatar-image.jpg" alt="фотография профиля">
-        <div class="profile-info">
-          <div class="profile-info__edit">
-            <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+        <div class="profile__info-container">
+          <div class="profile__info">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button"></button>
           </div>
-          <p class="profile-info__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <article class="element">
           <img class="element__image" src="images/arkhyz.jpg" alt="Архыз">
           <div class="element__title">
             <h2 class="element__text-title">Архыз</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__image" src="images/tsaritsyno.jpg" alt="Царицыно">
           <div class="element__title">
             <h2 class="element__text-title">Царицыно</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__image" src="images/crimea.jpg" alt="Крым">
           <div class="element__title">
             <h2 class="element__text-title">Крым</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__image" src="images/kamchatka.jpg" alt="Камчатка">
           <div class="element__title">
             <h2 class="element__text-title">Камчатка</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__image" src="images/samara.jpg" alt="Самара">
           <div class="element__title">
             <h2 class="element__text-title">Самара</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__image" src="images/ural.jpg" alt="Урал">
           <div class="element__title">
             <h2 class="element__text-title">Урал</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">
@@ -80,13 +80,11 @@
       <div class="popup__container">
         <form name="popup-edit-form" class="popup__edit-form">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" value="Жак-Ив Кусто" class="popup__edit-name">
-          <div class="popup__edit-form-line"></div>
-          <input type="text" value="Исследователь океана" class="popup__edit-about-me">
-          <div class="popup__edit-form-line"></div>
+          <input name="edit-name" type="text" value="Жак-Ив Кусто" class="popup__edit popup__edit_input_name">
+          <input name="edit-about" type="text" value="Исследователь океана" class="popup__edit popup__edit_input_about">
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
-        <button class="popup__close-button"></button>
+        <button type="button" class="popup__close-button"></button>
       </div>
     </section>
   </div>

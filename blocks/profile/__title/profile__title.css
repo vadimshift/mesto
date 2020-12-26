@@ -1,4 +1,4 @@
-.profile-info__title {
+.profile__title {
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .profile-info__title {
+  .profile__title {
     font-size: 27px;
     line-height: 33px;
     margin-top: 22px;

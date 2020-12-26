@@ -22,16 +22,16 @@ function formSubmitHandler(evt) {
   // О том, как это делать, расскажем позже.
 
   // Находим поля формы в DOM
-  let nameInput = formElement.querySelector('.popup__edit-name')// Воспользуйтесь инструментом .querySelector()
-  let jobInput = formElement.querySelector('.popup__edit-about-me')// Воспользуйтесь инструментом .querySelector()
+  let nameInput = formElement.querySelector('.popup__edit_input_name') // Воспользуйтесь инструментом .querySelector()
+  let jobInput = formElement.querySelector('.popup__edit_input_about')// Воспользуйтесь инструментом .querySelector()
 
   // Получите значение полей из свойства value
   let editName = nameInput.value
   let editAbout = jobInput.value
 
   // Выберите элементы, куда должны быть вставлены значения полей
-  let newNameInput = document.querySelector('.profile-info__title')
-  let newJobInput = document.querySelector('.profile-info__subtitle')
+  let newNameInput = document.querySelector('.profile__title')
+  let newJobInput = document.querySelector('.profile__subtitle')
 
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName

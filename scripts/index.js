@@ -22,7 +22,8 @@ function formSubmitHandler(evt) {
   let editAbout = jobInput.value
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName
-  newJobInput.textContent = editAbout, disabledPopup()
+  newJobInput.textContent = editAbout
+  disabledPopup()
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»

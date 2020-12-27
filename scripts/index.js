@@ -10,9 +10,9 @@ let newJobInput = document.querySelector('.profile__subtitle')
 
 function activatePopup() {
   openPopup.classList.add('popup_active')
-  /*let = formNameInput = newNameInput.textContent
-  nameInput = formNameInput
-  console.log(nameInput)*/
+  nameInput.value = newNameInput.textContent
+  jobInput.value = newJobInput.textContent
+
 }
 
 function disabledPopup() {
@@ -24,6 +24,7 @@ function formSubmitHandler(evt) {
   // Получите значение полей из свойства value
   let editName = nameInput.value
   let editAbout = jobInput.value
+
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = editName
   newJobInput.textContent = editAbout

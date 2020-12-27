@@ -2,13 +2,17 @@ let editButton = document.querySelector('.profile__edit-button')
 let openPopup = document.querySelector('.popup')
 let closePopup = document.querySelector('.popup__close-button')
 let formElement = document.querySelector('.popup__edit-form')
-let nameInput = formElement.querySelector('.popup__edit_input_name')
-let jobInput = formElement.querySelector('.popup__edit_input_about')
+let nameInput = document.querySelector('.popup__edit_input_name')
+let jobInput = document.querySelector('.popup__edit_input_about')
 let newNameInput = document.querySelector('.profile__title')
 let newJobInput = document.querySelector('.profile__subtitle')
 
+
 function activatePopup() {
   openPopup.classList.add('popup_active')
+  /*let = formNameInput = newNameInput.textContent
+  nameInput = formNameInput
+  console.log(nameInput)*/
 }
 
 function disabledPopup() {

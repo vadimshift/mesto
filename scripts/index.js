@@ -18,7 +18,8 @@ function activatePopupAdd() {
 }
 
 function activatePopup() {
-  openPopup.classList.add('popup_active')
+  openPopup.classList.add('popup_active') 
+  //присваиваем текстовое значение профайла инпутам
   nameInput.value = newNameInput.textContent
   jobInput.value = newJobInput.textContent
 }

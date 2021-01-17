@@ -13,12 +13,59 @@ const jobInput = document.querySelector('.popup__edit_input_about')
 const newNameInput = document.querySelector('.profile__title')
 const newJobInput = document.querySelector('.profile__subtitle')
 
+const placeElements = document.querySelector('.elements')
+const placeTemplate = document.querySelector('.template-place').content;
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+initialCards.forEach(function (element) {
+  const placeElement = placeTemplate.cloneNode(true);
+
+  placeElement.querySelector('.element__text-title').textContent = element.name
+  placeElement.querySelector('.element__image').src = element.link
+  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete)
+
+  placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like-button_active')})
+
+  placeElements.append(placeElement)
+})
+
+function hendlerDelete (evt) {
+evt.target.closest('.element').remove();
+}
+
 function activatePopupAdd() {
   openPopupAdd.classList.add('popup-add-place_active')
 }
 
 function activatePopup() {
-  openPopup.classList.add('popup_active') 
+  openPopup.classList.add('popup_active')
   //присваиваем текстовое значение профайла инпутам
   nameInput.value = newNameInput.textContent
   jobInput.value = newJobInput.textContent

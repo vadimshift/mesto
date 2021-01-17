@@ -13,6 +13,15 @@ const jobInput = document.querySelector('.popup__edit_input_about')
 const newNameInput = document.querySelector('.profile__title')
 const newJobInput = document.querySelector('.profile__subtitle')
 
+const addPlaceForm = document.querySelector('.popup-add-place__add-form')
+
+const inputImagePlace = document.querySelector('.popup-add-place__add_input_link-place')
+const inputNamePlace = document.querySelector('.popup-add-place__add_input_name-place')
+
+const imagePlace = document.querySelector('.element__image')
+const namePlace = document.querySelector('element__text-title')
+
+
 const placeElements = document.querySelector('.elements')
 const placeTemplate = document.querySelector('.template-place').content;
 
@@ -43,6 +52,20 @@ const initialCards = [
   }
 ];
 
+/*function addPlace() {
+  initialCards.forEach(element => placeElement = placeTemplate.cloneNode(true))
+
+
+  placeElement.querySelector('.element__text-title').textContent = element.name
+  placeElement.querySelector('.element__image').src = element.link
+  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete)
+
+  placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like-button_active')})
+
+  placeElements.append(placeElement)
+}*/
+
 initialCards.forEach(function (element) {
   const placeElement = placeTemplate.cloneNode(true);
 
@@ -58,6 +81,22 @@ initialCards.forEach(function (element) {
 
 function hendlerDelete (evt) {
 evt.target.closest('.element').remove();
+}
+//эта функция добавления карточки, она не работает.
+function hendlerAddPlace(evt) {
+  evt.preventDefault();
+
+  let addImagePlace = inputImagePlace.value
+  let addNamePlace = inputNamePlace.value
+
+  console.log(addImagePlace)
+  console.log(addNamePlace)
+/*
+  imagePlace.textContent = addImagePlace
+  namePlace.textContent = addNamePlace
+*/
+  disabledPopup();
+
 }
 
 function activatePopupAdd() {
@@ -90,6 +129,7 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
+addPlaceForm.addEventListener('submit', hendlerAddPlace)
 editButton.addEventListener('click', activatePopup)
 addButton.addEventListener('click', activatePopupAdd)
 closePopup.addEventListener('click', disabledPopup)

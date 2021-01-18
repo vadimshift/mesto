@@ -1,30 +1,27 @@
-const editButton = document.querySelector('.profile__edit-button')
-const addButton = document.querySelector('.profile__add-button')
+const editButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
+const addButton = document.querySelector('.profile__add-button') //кнопка добавления места
 
-const openPopup = document.querySelector('.popup')
-const closePopup = document.querySelector('.popup__close-button')
+const openPopup = document.querySelector('.popup') //открытие попапа профиля
+const closePopup = document.querySelector('.popup__close-button') //закрытие попапа профиля
 
-const openPopupAdd = document.querySelector('.popup-add-place')
-const closePopupAdd = document.querySelector('.popup-add-place__close-button')
+const openPopupAdd = document.querySelector('.popup-add-place') // открытие попапа места
+const closePopupAdd = document.querySelector('.popup-add-place__close-button') //закрытие попапа места
 
-const formElement = document.querySelector('.popup__edit-form')
-const nameInput = document.querySelector('.popup__edit_input_name')
-const jobInput = document.querySelector('.popup__edit_input_about')
-const newNameInput = document.querySelector('.profile__title')
-const newJobInput = document.querySelector('.profile__subtitle')
+const formElement = document.querySelector('.popup__edit-form') //форма редактирования профиля
+const nameInput = document.querySelector('.popup__edit_input_name') //инпут имя профиля
+const jobInput = document.querySelector('.popup__edit_input_about') //инпут о себе профиля
+const newNameInput = document.querySelector('.profile__title') //новое имя профиля
+const newJobInput = document.querySelector('.profile__subtitle') //новое о себе профиля
 
-const addPlaceForm = document.querySelector('.popup-add-place__add-form')
+const addPlaceForm = document.querySelector('.popup-add-place__add-form') //форма добавления места
 
-const inputImagePlace = document.querySelector('.popup-add-place__add_input_link-place')
-const inputNamePlace = document.querySelector('.popup-add-place__add_input_name-place')
+const inputImagePlace = document.querySelector('.popup-add-place__add_input_link-place') //инпут добавления картинки места
+const inputNamePlace = document.querySelector('.popup-add-place__add_input_name-place') //инпут добавления названрия места
 
-const imagePlace = document.querySelector('.element__image')
-const namePlace = document.querySelector('element__text-title')
+const placeElements = document.querySelector('.elements') //контейнер с карточками места
+const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
-
-const placeElements = document.querySelector('.elements')
-const placeTemplate = document.querySelector('.template-place').content;
-
+//массив с карточками места
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,22 +48,30 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+// берем массив и выполняем рендер для каждого элемента массива
+function render() {
+  initialCards.forEach(renderItem);
+}
 
-/*function addPlace() {
-  initialCards.forEach(element => placeElement = placeTemplate.cloneNode(true))
+//отрисовка карточек с местами
+function renderItem(element) {
+  const placeElement = placeTemplate.cloneNode(true); //клонируем темплейт тег
 
+  placeElement.querySelector('.element__text-title').textContent = element.name //подставляем в темлейт тег название места
+  placeElement.querySelector('.element__image').src = element.link //подставляем картинку (ссылку)
 
-  placeElement.querySelector('.element__text-title').textContent = element.name
-  placeElement.querySelector('.element__image').src = element.link
-  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete)
+  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete) //вешаем на кнопку удаление карточки с местом
 
+  //лайк на карточке с местом
   placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active')})
+    evt.target.classList.toggle('element__like-button_active')
+  })
 
   placeElements.append(placeElement)
-}*/
+}
 
-initialCards.forEach(function (element) {
+
+/*initialCards.forEach(function (element) {
   const placeElement = placeTemplate.cloneNode(true);
 
   placeElement.querySelector('.element__text-title').textContent = element.name
@@ -74,31 +79,44 @@ initialCards.forEach(function (element) {
   placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete)
 
   placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active')})
+    evt.target.classList.toggle('element__like-button_active')
+  })
 
   placeElements.append(placeElement)
-})
+})*/
 
-function hendlerDelete (evt) {
-evt.target.closest('.element').remove();
+//удаление карточки места
+function hendlerDelete(evt) {
+  evt.target.closest('.element').remove();
 }
-//эта функция добавления карточки, она не работает.
+//эта функция добавления карточки. Она заработала, но криво
 function hendlerAddPlace(evt) {
-  evt.preventDefault();
+  //evt.preventDefault();
 
   let addImagePlace = inputImagePlace.value
   let addNamePlace = inputNamePlace.value
 
-  console.log(addImagePlace)
-  console.log(addNamePlace)
-/*
-  imagePlace.textContent = addImagePlace
-  namePlace.textContent = addNamePlace
-*/
+  const placeElement = placeTemplate.cloneNode(true); //клонируем темплейт тег
+
+  placeElement.querySelector('.element__text-title').textContent = addNamePlace //подставляем в темлейт тег название места
+  placeElement.querySelector('.element__image').src = addImagePlace //подставляем картинку (ссылку)
+
+  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete) //вешаем на кнопку удаление карточки с местом
+
+  //лайк на карточке с местом
+  placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like-button_active')
+  })
+  placeElements.prepend(placeElement)
+  evt.preventDefault();
+  //renderItem()
+  //imagePlace.textContent = addImagePlace
+  //namePlace.textContent = addNamePlace
   disabledPopup();
 
 }
 
+//открытие попапа добавления места
 function activatePopupAdd() {
   openPopupAdd.classList.add('popup-add-place_active')
 }
@@ -134,3 +152,5 @@ editButton.addEventListener('click', activatePopup)
 addButton.addEventListener('click', activatePopupAdd)
 closePopup.addEventListener('click', disabledPopup)
 closePopupAdd.addEventListener('click', disabledPopup)
+
+render();

@@ -6,6 +6,8 @@ const closePopup = document.querySelector('.popup__close-button') //закрыт
 
 const openPopupAdd = document.querySelector('.popup-add-place') // открытие попапа места
 const closePopupAdd = document.querySelector('.popup-add-place__close-button') //закрытие попапа места
+const openPopupImage = document.querySelector('.popup_type_image')
+const closePopupImage = document.querySelector('.popup-image__close-button')
 
 const formElement = document.querySelector('.popup__edit-form') //форма редактирования профиля
 const nameInput = document.querySelector('.popup__edit_input_name') //инпут имя профиля
@@ -67,6 +69,9 @@ function renderItem(element) {
     evt.target.classList.toggle('element__like-button_active')
   })
 
+  placeElement.querySelector('.element__image').addEventListener ('click', function(evt) {
+    openPopupImage.classList.add('popup_active')
+  })
   placeElements.append(placeElement)
 }
 
@@ -131,6 +136,7 @@ function activatePopup() {
 function disabledPopup() {
   openPopup.classList.remove('popup_active')
   openPopupAdd.classList.remove('popup-add-place_active')
+  openPopupImage.classList.remove('popup_active')
 }
 
 function formSubmitHandler(evt) {
@@ -152,5 +158,6 @@ editButton.addEventListener('click', activatePopup)
 addButton.addEventListener('click', activatePopupAdd)
 closePopup.addEventListener('click', disabledPopup)
 closePopupAdd.addEventListener('click', disabledPopup)
+closePopupImage.addEventListener('click', disabledPopup)
 
 render();

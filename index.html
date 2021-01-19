@@ -105,30 +105,33 @@
       </div>
     </section>
 
-    <section class="popup-image-place">
-      <div class="popup-image-place__container">
-        <div class="popup-image-place__image-xl"></div>
-        <p class="popup-image-place__title"></p>
+    <section class="popup popup_type_image">
+      <div class="popup__container popup__container_type_image">
+        <img class="popup__image-xl" src=" ">
+        <figcaption class="popup__title popup__title_type_image-xl">
+          
+        </figcaption>
+        <button type="button"
+          class="popup__close-button popup__close-button_type_image popup-image__close-button"></button>
       </div>
-      <button type="button" class="popup-image-place__close-button"></button>
     </section>
-  </div>
-
-  <template class="template-place">
-    <article class="element">
-      <img class="element__image" src=" ">
-      <div class="element__title">
-        <h2 class="element__text-title">
-
-        </h2>
-        <button type="button" class="element__like-button"></button>
-      </div>
-      <button type="button" class="element__delete-button"><img src="images/delete-icon.svg"></button>
-    </article>
-  </template>
 
 
-  <script src="./scripts/index.js"></script>
+    <template class="template-place">
+      <article class="element">
+        <img class="element__image" src=" ">
+        <div class="element__title">
+          <h2 class="element__text-title">
+
+          </h2>
+          <button type="button" class="element__like-button"></button>
+        </div>
+        <button type="button" class="element__delete-button"><img src="images/delete-icon.svg"></button>
+      </article>
+    </template>
+
+
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

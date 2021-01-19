@@ -6,8 +6,11 @@ const closePopup = document.querySelector('.popup__close-button') //закрыт
 
 const openPopupAdd = document.querySelector('.popup-add-place') // открытие попапа места
 const closePopupAdd = document.querySelector('.popup-add-place__close-button') //закрытие попапа места
+
 const openPopupImage = document.querySelector('.popup_type_image')
 const closePopupImage = document.querySelector('.popup-image__close-button')
+const linkPopupImage = document.querySelector('.popup__image-xl')
+const namePopupImage = document.querySelector('.popup__title_type_image-xl')
 
 const formElement = document.querySelector('.popup__edit-form') //форма редактирования профиля
 const nameInput = document.querySelector('.popup__edit_input_name') //инпут имя профиля
@@ -71,6 +74,8 @@ function renderItem(element) {
 
   placeElement.querySelector('.element__image').addEventListener ('click', function(evt) {
     openPopupImage.classList.add('popup_active')
+    namePopupImage.textContent = element.name
+    linkPopupImage.src = element.link
   })
   placeElements.append(placeElement)
 }

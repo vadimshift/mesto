@@ -1,7 +1,11 @@
 .element__image {
   max-width: 100%;
-  height: 281px;
+  
+  /*height: 280px;*/
+
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
+  overflow: hidden;
   border-radius: 10px 10px 0 0;
+
 }

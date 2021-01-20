@@ -1,9 +1,7 @@
 .element {
   background-color: #ffffff;
-  width: 100%;
-  height: 370px;
+  max-width: 282px;
+  height: 361px;
   border-radius: 10px;
   position: relative;
-
-
 }

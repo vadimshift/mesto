@@ -18,10 +18,10 @@ const jobInput = document.querySelector('.popup__edit_input_about') //инпут
 const newNameInput = document.querySelector('.profile__title') //новое имя профиля
 const newJobInput = document.querySelector('.profile__subtitle') //новое о себе профиля
 
-const addPlaceForm = document.querySelector('.popup-edit-form_type_add-place') //форма добавления места
+const addPlaceForm = document.querySelector('.popup-edit-form__add-place') //форма добавления места
 
-const inputImagePlace = document.querySelector('.popup-add-place_input-link-image') //инпут добавления картинки места
-const inputNamePlace = document.querySelector('.popup-add-place_input-name-place') //инпут добавления названрия места
+const inputImagePlace = document.querySelector('.popup-add-place__input-link-image') //инпут добавления картинки места
+const inputNamePlace = document.querySelector('.popup-add-place__input-name-place') //инпут добавления названрия места
 
 const placeElements = document.querySelector('.elements') //контейнер с карточками места
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места

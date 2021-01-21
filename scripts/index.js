@@ -26,6 +26,8 @@ const inputNamePlace = document.querySelector('.popup-add-place_input-name-place
 const placeElements = document.querySelector('.elements') //контейнер с карточками места
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
+const popup = document.querySelector('.popup')
+
 //массив с карточками места
 const initialCards = [
   {
@@ -72,6 +74,7 @@ function renderItem(element) {
     evt.target.classList.toggle('element__like-button_active')
   })
 
+  //разворот фото на весь экран
   placeElement.querySelector('.element__image').addEventListener ('click', function(evt) {
     openPopupImage.classList.add('popup_active')
     namePopupImage.textContent = element.name
@@ -79,21 +82,6 @@ function renderItem(element) {
   })
   placeElements.append(placeElement)
 }
-
-
-/*initialCards.forEach(function (element) {
-  const placeElement = placeTemplate.cloneNode(true);
-
-  placeElement.querySelector('.element__text-title').textContent = element.name
-  placeElement.querySelector('.element__image').src = element.link
-  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDelete)
-
-  placeElement.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active')
-  })
-
-  placeElements.append(placeElement)
-})*/
 
 //удаление карточки места
 function hendlerDelete(evt) {
@@ -157,7 +145,7 @@ function formSubmitHandler(evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler)
 addPlaceForm.addEventListener('submit', hendlerAddPlace)
 editButton.addEventListener('click', activatePopup)
 addButton.addEventListener('click', activatePopupAdd)

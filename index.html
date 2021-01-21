@@ -49,17 +49,17 @@
       </div>
     </section>
 
-    <section class="popup-add-place">
-      <div class="popup-add-place__container">
-        <form name="popup-add-place-form" class="popup-add-place__add-form">
-          <h2 class="popup-add-place__title">Новое место</h2>
-          <input name="add-place" type="text" placeholder="Название"
-            class="popup-add-place__add popup-add-place__add_input_name-place">
-          <input name="add-link" type="text" placeholder="Ссылка на картинку"
-            class="popup-add-place__add popup-add-place__add_input_link-place">
-          <button type="submit" class="popup-add-place__create-button">Создать</button>
+    <section class="popup popup_type_add-place">
+      <div class="popup__container">
+        <form name="popup-edit-form" class="popup__edit-form popup-edit-form_type_add-place">
+          <h2 class="popup__title">Новое место</h2>
+          <input name="edit-name" type="text" placeholder="Название"
+            class="popup__edit popup-add-place_input-name-place">
+          <input name="edit-about" type="text" placeholder="Ссылка на картинку"
+            class="popup__edit popup-add-place_input-link-image">
+          <button type="submit" class="popup__submit-button">Создать</button>
         </form>
-        <button type="button" class="popup-add-place__close-button"></button>
+        <button type="button" class="popup__close-button popup__close-button_type_add-place"></button>
       </div>
     </section>
 

@@ -29,19 +29,8 @@
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_active/popup_active.css);
 @import url(../blocks/element/__delete-button/element__delete-button.css);
-@import url(../blocks/popup-add-place/popup-add-place.css);
-@import url(../blocks/popup-add-place/_active/popup-add-place_active.css);
-@import url(../blocks/popup-add-place/__add/popup-add-place__add.css);
-@import url(../blocks/popup-add-place/__add-form/popup-add-place__add-form.css);
-@import url(../blocks/popup-add-place/__close-button/popup-add-place__close-button.css);
-@import url(../blocks/popup-add-place/__container/popup-add-place__container.css);
-@import url(../blocks/popup-add-place/__create-button/popup-add-place__create-button.css);
-@import url(../blocks/popup-add-place/__title/popup-add-place__title.css);
-@import url(../blocks/popup-add-place/_active/popup-add-place_active.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 @import url(../blocks/popup/__image-xl/popup__image-xl.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_image.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_image-xl.css);
 @import url(../blocks/element/__image-container/element__image-container.css);
-
-

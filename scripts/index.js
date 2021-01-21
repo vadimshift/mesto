@@ -4,8 +4,8 @@ const addButton = document.querySelector('.profile__add-button') //кнопка 
 const openPopup = document.querySelector('.popup') //открытие попапа профиля
 const closePopup = document.querySelector('.popup__close-button') //закрытие попапа профиля
 
-const openPopupAdd = document.querySelector('.popup-add-place') // открытие попапа места
-const closePopupAdd = document.querySelector('.popup-add-place__close-button') //закрытие попапа места
+const openPopupAdd = document.querySelector('.popup_type_add-place') // открытие попапа места
+const closePopupAdd = document.querySelector('.popup__close-button_type_add-place') //закрытие попапа места
 
 const openPopupImage = document.querySelector('.popup_type_image')
 const closePopupImage = document.querySelector('.popup__close-button_type_image')
@@ -18,10 +18,10 @@ const jobInput = document.querySelector('.popup__edit_input_about') //инпут
 const newNameInput = document.querySelector('.profile__title') //новое имя профиля
 const newJobInput = document.querySelector('.profile__subtitle') //новое о себе профиля
 
-const addPlaceForm = document.querySelector('.popup-add-place__add-form') //форма добавления места
+const addPlaceForm = document.querySelector('.popup-edit-form_type_add-place') //форма добавления места
 
-const inputImagePlace = document.querySelector('.popup-add-place__add_input_link-place') //инпут добавления картинки места
-const inputNamePlace = document.querySelector('.popup-add-place__add_input_name-place') //инпут добавления названрия места
+const inputImagePlace = document.querySelector('.popup-add-place_input-link-image') //инпут добавления картинки места
+const inputNamePlace = document.querySelector('.popup-add-place_input-name-place') //инпут добавления названрия места
 
 const placeElements = document.querySelector('.elements') //контейнер с карточками места
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
@@ -128,7 +128,7 @@ function hendlerAddPlace(evt) {
 
 //открытие попапа добавления места
 function activatePopupAdd() {
-  openPopupAdd.classList.add('popup-add-place_active')
+  openPopupAdd.classList.add('popup_active')
 }
 
 function activatePopup() {
@@ -140,7 +140,7 @@ function activatePopup() {
 
 function disabledPopup() {
   openPopup.classList.remove('popup_active')
-  openPopupAdd.classList.remove('popup-add-place_active')
+  openPopupAdd.classList.remove('popup_active')
   openPopupImage.classList.remove('popup_active')
 }
 

@@ -8,7 +8,7 @@ const openPopupAdd = document.querySelector('.popup-add-place') // открыт�
 const closePopupAdd = document.querySelector('.popup-add-place__close-button') //закрытие попапа места
 
 const openPopupImage = document.querySelector('.popup_type_image')
-const closePopupImage = document.querySelector('.popup-image__close-button')
+const closePopupImage = document.querySelector('.popup__close-button_type_image')
 const linkPopupImage = document.querySelector('.popup__image-xl')
 const namePopupImage = document.querySelector('.popup__title_type_image-xl')
 

@@ -1,4 +1,4 @@
-.popup__edit {
+.popup__enter {
   width: 358px;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
@@ -13,12 +13,12 @@
   padding-bottom: 13px;
 }
 
-.popup__edit:last-of-type {
+.popup__enter:last-of-type {
   margin-top: 30px;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__edit {
+  .popup__enter {
     max-width: 232px;
     margin-left: auto;
     margin-right: auto;

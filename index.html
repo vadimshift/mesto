@@ -35,37 +35,37 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <section class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form name="popup-edit-form" class="popup__edit-form">
+        <form name="popup-form" class="popup__form popup__form_type_edit-profile">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input name="edit-name" type="text" value="Жак-Ив Кусто" placeholder="Имя"
-            class="popup__edit popup__edit_input_name">
-          <input name="edit-about" type="text" value="Исследователь океана" placeholder="О себе"
-            class="popup__edit popup__edit_input_about">
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+          <input name="enter-name-profile" type="text" value="Жак-Ив Кусто" placeholder="Имя"
+            class="popup__enter popup__enter_type_name">
+          <input name="enter-about-profile" type="text" value="Исследователь океана" placeholder="О себе"
+            class="popup__enter popup__enter_type_about">
+          <button type="submit" class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
         </form>
-        <button type="button" class="popup__close-button"></button>
+        <button type="button" class="popup__close-button popup__close-button_type_edit-profile"></button>
       </div>
     </section>
 
     <section class="popup popup_type_add-place">
       <div class="popup__container">
-        <form name="popup-edit-form" class="popup__edit-form popup__edit-form_add-place">
+        <form name="popup-form" class="popup__form popup__form_type_add-place">
           <h2 class="popup__title">Новое место</h2>
-          <input name="edit-name" type="text" placeholder="Название"
-            class="popup__edit popup__edit_type_input-name-place">
-          <input name="edit-about" type="text" placeholder="Ссылка на картинку"
-            class="popup__edit popup__edit_type_input-link-image">
-          <button type="submit" class="popup__submit-button">Создать</button>
+          <input name="enter-name-place" type="text" placeholder="Название"
+            class="popup__enter popup__enter_type_name-place">
+          <input name="enter-link-place" type="text" placeholder="Ссылка на картинку"
+            class="popup__enter popup__enter_type_link-image">
+          <button type="submit" class="popup__submit-button popup__submit-button_type_add-place">Создать</button>
         </form>
         <button type="button" class="popup__close-button popup__close-button_type_add-place"></button>
       </div>
     </section>
 
-    <section class="popup popup_type_image">
-      <div class="popup__container popup__container_type_image">
-        <img class="popup__image-xl" src="#" alt="изоображение места">
+    <section class="popup popup_type_image-xl">
+      <div class="popup__container popup__container_type_image-xl">
+        <img class="popup__image-xl" src="#" alt="Изображение места">
         <p class="popup__title popup__title_type_image-xl">
 
         </p>

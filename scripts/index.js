@@ -1,3 +1,83 @@
+const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
+const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
+const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
+const profileEnterAbout = document.querySelector('.popup__enter_type_about') //поле ввода "о себе" в профиле
+const newProfileName = document.querySelector('.profile__title') //новое имя профиля
+const newProfileAbout = document.querySelector('.profile__subtitle') //новое о себе профиля
+
+const addPlaceButton = document.querySelector('.profile__add-button') //кнопка добавления места
+
+const closeButtonProfile = document.querySelector('.popup__close-button_type_edit-profile') // кнопка закрытия попапа редактирования профиля
+const closeButtonAddPlace = document.querySelector('.popup__close-button_type_add-place') // кнопка закрытия попапа добавления места
+const closeButtonImageXl = document.querySelector('popup__close-button_type_image') // кнопка закрытия попапа с фотографией
+
+const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
+const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
+const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+//функция открытия/закрытия попапа
+const togglePopup = (popup) => {
+  popup.classList.toggle('popup_active')
+}
+
+//функция редактирования профиля
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  // Получение значение полей из свойства value
+  const editName = profileEnterName.value
+  const editAbout = profileEnterAbout.value
+
+  // Вставка новых значений с помощью textContent
+  newProfileName.textContent = editName
+  newProfileAbout.textContent = editAbout
+
+  togglePopup(popupEditProfile)
+}
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+profileForm.addEventListener('submit', formSubmitHandler)
+
+
+profileEditButton.addEventListener('click', () => togglePopup(popupEditProfile)) //открытие попапа редактирования профиля
+addPlaceButton.addEventListener('click', () => togglePopup(popupAddPlace)) // открытие попапа добавления места
+popupImageXl.addEventListener('click', () => togglePopup(popupImageXl)) // открытие попапа с фотографией на весь экран
+
+closeButtonProfile.addEventListener('click', () => togglePopup(popupEditProfile)) // закрытие папапа редактирования профиля
+closeButtonAddPlace.addEventListener('click', () => togglePopup(popupAddPlace)) // закрытие попапа добавления места
+//closeButtonImageXl.addEventListener('click', () => togglePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
+
+
+
+
+/*
 const editButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const addButton = document.querySelector('.profile__add-button') //кнопка добавления места
 
@@ -153,4 +233,4 @@ closePopup.addEventListener('click', disabledPopup)
 closePopupAdd.addEventListener('click', disabledPopup)
 closePopupImage.addEventListener('click', disabledPopup)
 
-render();
+//render();*/

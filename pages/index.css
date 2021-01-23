@@ -31,6 +31,6 @@
 @import url(../blocks/element/__delete-button/element__delete-button.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 @import url(../blocks/popup/__image-xl/popup__image-xl.css);
-@import url(../blocks/popup/__container/_type/popup__container_type_image.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_image-xl.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_image-xl.css);
 @import url(../blocks/element/__image-container/element__image-container.css);

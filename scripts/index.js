@@ -86,6 +86,7 @@ function getCardElement (data) {
     popupImageXl.classList.add('popup_active')
     imageXlName.textContent = data.name
     imageXlLink.src = data.link
+
   })
   return placeElement
 }
@@ -93,7 +94,7 @@ function getCardElement (data) {
 //функция рендер карточки
 function renderCards (data) {
   getCardElement(data)
-  placeElements.append(getCardElement(data))
+  placeElements.prepend(getCardElement(data))
 }
 
 //функция рендер карточки для массива
@@ -103,10 +104,10 @@ function render() {
 
 function hendlerAddPlace(evt) {
   evt.preventDefault();
+  addPlaceForm.reset()
   const data = {}
   data.name = inputPlaceName.value
   data.link = inputPlaceLink.value
-  console.log(data)
   getCardElement(data)
   renderCards(data)
   togglePopup(popupAddPlace)

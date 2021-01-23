@@ -15,6 +15,10 @@ const popupEditProfile = document.querySelector('.popup_type_edit-profile') // �
 const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
 const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
 
+const inputPlaceName = document.querySelector('.popup__enter_type_name-place') //инпут добавления ссылки на изображение места
+const inputPlaceLink = document.querySelector('.popup__enter_type_link-image') //инпут добавления названия места
+const addPlaceForm = document.querySelector('.popup__form_type_add-place') //форма добавления нового места
+
 const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
 const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
 
@@ -97,6 +101,16 @@ function render() {
   initialCards.forEach(renderCards);
 }
 
+function hendlerAddPlace(evt) {
+  evt.preventDefault();
+  const data = {}
+  data.name = inputPlaceName.value
+  data.link = inputPlaceLink.value
+  console.log(data)
+  getCardElement(data)
+  renderCards(data)
+  togglePopup(popupAddPlace)
+}
 
 //лайк карточки места
 function handleLikeIcon(evt) {
@@ -118,6 +132,7 @@ function handlePreviewPicture(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 profileForm.addEventListener('submit', formSubmitHandler)
+addPlaceForm.addEventListener('submit', hendlerAddPlace)
 
 profileEditButton.addEventListener('click', () => togglePopup(popupEditProfile)) //открытие попапа редактирования профиля
 addPlaceButton.addEventListener('click', () => togglePopup(popupAddPlace)) // открытие попапа добавления места

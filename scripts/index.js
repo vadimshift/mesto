@@ -9,7 +9,7 @@ const addPlaceButton = document.querySelector('.profile__add-button') //кноп
 
 const closeButtonProfile = document.querySelector('.popup__close-button_type_edit-profile') // кнопка закрытия попапа редактирования профиля
 const closeButtonAddPlace = document.querySelector('.popup__close-button_type_add-place') // кнопка закрытия попапа добавления места
-const closeButtonImageXl = document.querySelector('popup__close-button_type_image') // кнопка закрытия попапа с фотографией
+const closeButtonImageXl = document.querySelector('.popup__close-button_type_image-xl') // кнопка закрытия попапа с фотографией
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
 const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
@@ -122,13 +122,7 @@ evt.target.classList.toggle('element__like-button_active')
 function hendlerDeleteCard(evt) {
   evt.target.closest('.element').remove();
 }
-/*
-function handlePreviewPicture(evt) {
-  popupImageXl.classList.add('popup_active')
-  imageXlName.textContent = data.name
-  imageXlLink.src = data.link
 
-}*/
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»

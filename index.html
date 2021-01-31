@@ -37,12 +37,14 @@
 
     <section class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form name="popup-form" class="popup__form popup__form_type_edit-profile">
+        <form novalidate name="profile" class="popup__form popup__form_type_edit-profile">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input name="enter-name-profile" type="text" value="Жак-Ив Кусто" placeholder="Имя"
+          <input required minlength="2" maxlength="40" name="enterNameProfile" type="text" value="Жак-Ив Кусто" placeholder="Имя"
             class="popup__enter popup__enter_type_name">
-          <input name="enter-about-profile" type="text" value="Исследователь океана" placeholder="О себе"
+          <span id="enterNameProfile-error" class="popup__error-message"></span>
+          <input required minlength="2" maxlength="200" name="enterAboutProfile" type="text" value="Исследователь океана" placeholder="О себе"
             class="popup__enter popup__enter_type_about">
+          <span id="enterAboutProfile-error" class="popup__error-message"></span>
           <button type="submit" class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button popup__close-button_type_edit-profile"></button>
@@ -51,12 +53,14 @@
 
     <section class="popup popup_type_add-place">
       <div class="popup__container">
-        <form name="popup-form" class="popup__form popup__form_type_add-place">
+        <form novalidate name="place" class="popup__form popup__form_type_add-place">
           <h2 class="popup__title">Новое место</h2>
-          <input name="enter-name-place" type="text" placeholder="Название"
+          <input required minlength="2" maxlength="30" name="enterNamePlace" type="text" placeholder="Название"
             class="popup__enter popup__enter_type_name-place">
-          <input name="enter-link-place" type="text" placeholder="Ссылка на картинку"
+          <span id="enterNamePlace-error" class="popup__error-message"></span>
+          <input required type="url" name="enterLinkPlace" type="text" placeholder="Ссылка на картинку"
             class="popup__enter popup__enter_type_link-image">
+          <span id="enterLinkPlace-error" class="popup__error-message"></span>
           <button type="submit" class="popup__submit-button popup__submit-button_type_add-place">Создать</button>
         </form>
         <button type="button" class="popup__close-button popup__close-button_type_add-place"></button>
@@ -69,15 +73,14 @@
         <p class="popup__title popup__title_type_image-xl">
           картинка
         </p>
-        <button type="button"
-          class="popup__close-button popup__close-button_type_image-xl"></button>
+        <button type="button" class="popup__close-button popup__close-button_type_image-xl"></button>
       </div>
     </section>
 
     <template class="template-place">
       <article class="element">
         <div class="element__image-container">
-        <img class="element__image" src="#" alt="изоображение места">
+          <img class="element__image" src="#" alt="изоображение места">
         </div>
         <div class="element__title">
           <h2 class="element__text-title">
@@ -91,6 +94,7 @@
 
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </div>
 </body>
 

@@ -86,7 +86,6 @@ function getCardElement(data) {
     togglePopup(popupImageXl)
     imageXlName.textContent = data.name
     imageXlLink.src = data.link
-
   })
   return placeElement
 }

@@ -54,12 +54,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-/*
-//функция открытия/закрытия попапа
-const togglePopup = (popup) => {
-  popup.classList.toggle('popup_active')
-}
-*/
+
 //функция закрытия попапа
 const closePopup = (popup) => {
   popup.classList.remove('popup_active')
@@ -78,9 +73,20 @@ function closePopupOverlay(popup) {
   }
 })
 }
-//на все попапы вешаем функцию закрытия попопа по клику на оверлей
+
+//функция закрытия попапа нажатием на клавишу Esc
+function closePopupKeybord (popup) {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    }
+  })
+}
+
+//на все попапы вешаем функцию закрытия попопа по клику на оверлей и нажатием на Esc
 allPopup.forEach(popup => {
   closePopupOverlay(popup)
+  closePopupKeybord(popup)
   })
 
 //функция редактирования профиля
@@ -145,24 +151,6 @@ function handleLikeIcon(evt) {
 function hendlerDeleteCard(evt) {
   evt.target.closest('.element').remove();
 }
-
-/*
-//закрываем попап по клику на overlay
-allPopup.forEach(popup => {
-  popup.addEventListener('click', function (evt) {
-    togglePopup(popup)
-  })
-})*/
-
-/*allPopup.forEach (popup => {
-  popup.addEventListener('keydown', function (evt) {
-  //if (evt.key === 'Escape')
-  {
-  console.log('hello') }
-})
-})*/
-
-
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»

@@ -54,11 +54,34 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+/*
 //функция открытия/закрытия попапа
 const togglePopup = (popup) => {
   popup.classList.toggle('popup_active')
 }
+*/
+//функция закрытия попапа
+const closePopup = (popup) => {
+  popup.classList.remove('popup_active')
+}
+
+//функция открытия попапа
+const openPopup = (popup) => {
+  popup.classList.add('popup_active')
+}
+
+//функция закрытия попапа по клику на оверлей
+function closePopupOverlay(popup) {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup_active')) {
+      closePopup(popup);
+  }
+})
+}
+//на все попапы вешаем функцию закрытия попопа по клику на оверлей
+allPopup.forEach(popup => {
+  closePopupOverlay(popup)
+  })
 
 //функция редактирования профиля
 function formSubmitHandler(evt) {
@@ -71,7 +94,7 @@ function formSubmitHandler(evt) {
   newProfileName.textContent = editName
   newProfileAbout.textContent = editAbout
 
-  togglePopup(popupEditProfile)
+  closePopup(popupEditProfile)
 }
 
 //функция отрисовки разметки карточки с местом
@@ -86,7 +109,7 @@ function getCardElement(data) {
   placeElement.querySelector('.element__like-button').addEventListener('click', handleLikeIcon) //ставим лайки на карточку
   //функция разворота картинки на весь экран
   elementImage.addEventListener('click', function (evt) {
-    togglePopup(popupImageXl)
+    openPopup(popupImageXl)
     imageXlName.textContent = data.name
     imageXlLink.src = data.link
   })
@@ -110,7 +133,7 @@ function hendlerAddPlace(evt) {
   data.link = inputPlaceLink.value
   renderCards(data)
   addPlaceForm.reset()
-  togglePopup(popupAddPlace)
+  closePopup(popupAddPlace)
 }
 
 //лайк карточки места
@@ -146,12 +169,14 @@ allPopup.forEach(popup => {
 profileForm.addEventListener('submit', formSubmitHandler)
 addPlaceForm.addEventListener('submit', hendlerAddPlace)
 
-profileEditButton.addEventListener('click', () => togglePopup(popupEditProfile)) //открытие попапа редактирования профиля
-addPlaceButton.addEventListener('click', () => togglePopup(popupAddPlace)) // открытие попапа добавления места
+profileEditButton.addEventListener('click', () => openPopup(popupEditProfile)) //открытие попапа редактирования профиля
+addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace)) // открытие попапа добавления места
 
 
-closeButtonProfile.addEventListener('click', () => togglePopup(popupEditProfile)) // закрытие папапа редактирования профиля
-closeButtonAddPlace.addEventListener('click', () => togglePopup(popupAddPlace)) // закрытие попапа добавления места
-closeButtonImageXl.addEventListener('click', () => togglePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
+closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
+closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места
+closeButtonImageXl.addEventListener('click', () => closePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
+
+
 
 render()

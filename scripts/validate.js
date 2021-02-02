@@ -104,7 +104,7 @@ const setEventListeners = (formElement) => {
 };
 
 //функция для обработки всех форм
-const formValidation = () => {
+const enableValidation = () => {
   const allForms = Array.from(document.querySelectorAll('.popup__form')); //делаем массив из всех форм
   allForms.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
@@ -113,8 +113,6 @@ const formValidation = () => {
     setEventListeners(formElement); // Для каждой формы вызовем функцию setEventListeners
   });
 };
-
-//formValidation();
 
 //функция проверяет наличие невалидного инпута
 const inputCheckValidity = (inputList) => {
@@ -140,7 +138,7 @@ const submitButtonStatus = (inputList, submitButton) => {
   }
 };
 
-formValidation();
+enableValidation();
 
 
 

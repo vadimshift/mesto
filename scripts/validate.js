@@ -28,19 +28,8 @@ function inputValid(evt) {
   submitButtonState(isValid)
 }
 
-//меняет состояние кнопки (работает только с одним попапом)
-function submitButtonState(isFormValid) {
-  if (isFormValid) {
-    submitButton.removeAttribute('disabled');
-    submitButton.classList.remove('popup__submit-button_disabled');
-  } else {
-    submitButton.setAttribute('disabled', true);
-    submitButton.classList.add('popup__submit-button_disabled');
-  }
-}
 
-formProfileEdit.addEventListener('input', inputValid)
-formAddPlace.addEventListener('input', inputValid)
+dEventListener('input', inputValid)
 */
 /*const allForms = Array.from(document.querySelectorAll('.popup__form'))
 const inputs = Array.from(document.querySelectorAll('.popup__enter'))
@@ -125,7 +114,7 @@ const formValidation = () => {
   });
 };
 
-formValidation();
+//formValidation();
 
 //функция проверяет наличие невалидного инпута
 const inputCheckValidity = (inputList) => {
@@ -151,6 +140,7 @@ const submitButtonStatus = (inputList, submitButton) => {
   }
 };
 
+formValidation();
 
 
 

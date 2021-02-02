@@ -25,6 +25,9 @@ const imageXlName = document.querySelector('.popup__title_type_image-xl') //по
 const placeElements = document.querySelector('.elements') //контейнер с карточками места
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
+const allPopup = Array.from(document.querySelectorAll('.popup')) //находим все попапы
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -120,6 +123,23 @@ function hendlerDeleteCard(evt) {
   evt.target.closest('.element').remove();
 }
 
+/*
+//закрываем попап по клику на overlay
+allPopup.forEach(popup => {
+  popup.addEventListener('click', function (evt) {
+    togglePopup(popup)
+  })
+})*/
+
+/*allPopup.forEach (popup => {
+  popup.addEventListener('keydown', function (evt) {
+  //if (evt.key === 'Escape')
+  {
+  console.log('hello') }
+})
+})*/
+
+
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -128,9 +148,10 @@ addPlaceForm.addEventListener('submit', hendlerAddPlace)
 
 profileEditButton.addEventListener('click', () => togglePopup(popupEditProfile)) //открытие попапа редактирования профиля
 addPlaceButton.addEventListener('click', () => togglePopup(popupAddPlace)) // открытие попапа добавления места
-popupImageXl.addEventListener('click', () => togglePopup(popupImageXl)) // открытие попапа с фотографией на весь экран
+
 
 closeButtonProfile.addEventListener('click', () => togglePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => togglePopup(popupAddPlace)) // закрытие попапа добавления места
+closeButtonImageXl.addEventListener('click', () => togglePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
 
 render()

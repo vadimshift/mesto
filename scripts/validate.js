@@ -1,16 +1,16 @@
 //Функция отображения сообщения об ошибке в инпутах
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, allSelectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
-  inputElement.classList.add('popup__enter_error')
+  inputElement.classList.add(allSelectors.inputTypeError)
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__error-message_active')
+  errorElement.classList.add(allSelectors.errorText)
 }
 
 //функция для скрытия сообщений об ошибке в инпутах
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, allSelectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
-  inputElement.classList.remove('popup__enter_error')
-  errorElement.classList.remove('popup__error-message_active')
+  inputElement.classList.remove(allSelectors.inputTypeError)
+  errorElement.classList.remove(allSelectors.errorText)
   errorElement.textContent = ''
 }
 
@@ -18,10 +18,10 @@ const hideInputError = (formElement, inputElement) => {
 const isValidInput = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, allSelectors);
   } else {
     // Если проходит, скроем
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, allSelectors);
   }
 }
 

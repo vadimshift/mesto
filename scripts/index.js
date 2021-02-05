@@ -30,6 +30,7 @@ const allPopup = Array.from(document.querySelectorAll('.popup')) //находи�
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
 
+//Объект со всеми необходимыми классами для валидации форм.
 const allSelectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__enter',

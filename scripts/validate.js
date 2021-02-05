@@ -26,27 +26,27 @@ const isValidInput = (formElement, inputElement) => {
 }
 
 //функция добавляет обработчики всем инпутам
-const setEventListeners = (formElement) => {
-  const allInputs = Array.from(formElement.querySelectorAll('.popup__enter')); //делаем массив из всех инпутов
-  const submitButton = formElement.querySelector('.popup__submit-button');
+const setEventListeners = (formElement, allSelectors) => {
+  const allInputs = Array.from(formElement.querySelectorAll(allSelectors.inputSelector)) //делаем массив из всех инпутов
+  const submitButton = formElement.querySelector(allSelectors.submitButton)
   allInputs.forEach((inputElement) => {
     // каждому полю добавляем обработчик события input
     inputElement.addEventListener('input', () => {
       // Вызываем isValid, передаем форму и инпут
       isValidInput(formElement, inputElement)
-      submitButtonStatus(allInputs, submitButton);
+      submitButtonStatus(allInputs, submitButton, allSelectors);
     })
   })
 }
 
 //функция для обработки всех форм
-const enableValidation = () => {
-  const allForms = Array.from(document.querySelectorAll('.popup__form')); //делаем массив из всех форм
+const enableValidation = (allSelectors) => {
+  const allForms = Array.from(document.querySelectorAll(allSelectors.formSelector)); //делаем массив из всех форм
   allForms.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     })
-    setEventListeners(formElement); // Для каждой формы вызовем функцию setEventListeners
+    setEventListeners(formElement, allSelectors); // Для каждой формы вызовем функцию setEventListeners
   })
 }
 
@@ -62,19 +62,19 @@ const inputCheckValidity = (inputList) => {
 
 
 // функция меняет статус кнопки в зависимости от валидности инпутов
-const submitButtonStatus = (inputList, submitButton) => {
+const submitButtonStatus = (inputList, submitButton, allSelectors) => {
     if (inputCheckValidity(inputList)) {
     // делаем кнопку неактивной
-    submitButton.classList.add('popup__submit-button_disabled');
+    submitButton.classList.add(allSelectors.submitButtonDisabled);
     submitButton.setAttribute('disabled', true)
   } else {
     // иначе делаем кнопку активной
-    submitButton.classList.remove('popup__submit-button_disabled');
+    submitButton.classList.remove(allSelectors.submitButtonDisabled);
     submitButton.removeAttribute('disabled')
   }
 };
 
-enableValidation()
+enableValidation(allSelectors)
 
 
 

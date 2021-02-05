@@ -30,7 +30,14 @@ const allPopup = Array.from(document.querySelectorAll('.popup')) //находи�
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
 
-
+const allSelectors = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__enter',
+  submitButton: '.popup__submit-button',
+  submitButtonDisabled: 'popup__submit-button_disabled',
+  errorText: 'popup__error-message_active',
+  inputTypeError: 'popup__enter_error'
+}
 
 const initialCards = [
   {

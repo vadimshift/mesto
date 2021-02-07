@@ -60,6 +60,11 @@ const initialCards = [
   }
 ];
 
+const openPopupEditProfile = () => {
+  profileEnterName.value = newProfileName.textContent
+  profileEnterAbout.value = newProfileAbout.textContent
+}
+
 //функция открытия попапа
 function openPopup(popupElement) {
   popupElement.classList.add('popup_active')
@@ -163,8 +168,8 @@ popupAddPlace.addEventListener('click', closePopupOverlay)
 popupImageXl.addEventListener('click', closePopupOverlay)
 
 
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)) //открытие попапа редактирования профиля
-addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonProfile, allSelectors))// открытие попапа добавления места
+profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile()) //открытие попапа редактирования профиля
+addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace))
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

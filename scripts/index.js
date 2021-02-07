@@ -26,19 +26,12 @@ const placeElements = document.querySelector('.elements') //контейнер �
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
 const allPopup = Array.from(document.querySelectorAll('.popup')) //находим все попапы
+const allInput = Array.from(document.querySelectorAll('.popup__enter'))
 
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
 
 //Объект со всеми необходимыми классами для валидации форм.
-const allSelectors = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__enter',
-  submitButton: '.popup__submit-button',
-  submitButtonDisabled: 'popup__submit-button_disabled',
-  errorText: 'popup__error-message_active',
-  inputTypeError: 'popup__enter_error'
-}
 
 const initialCards = [
   {
@@ -67,62 +60,34 @@ const initialCards = [
   }
 ];
 
-//устанавливаем статус кнопки
-function setSubmitButtonStatus(isFormValid, submitButton) {
-    if (isFormValid) {
-    submitButton.removeAttribute('disabled');
-    submitButton.classList.remove('popup__submit-button_disabled');
-  } else {
-    submitButton.setAttribute('disabled', true);
-    submitButton.classList.add('popup__submit-button_disabled');
+//функция открытия попапа
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_active')
+  document.addEventListener('keydown', closePopupKeybord)
+}
+
+//функция закрытия попапа
+function closePopup(popupElement) {
+  popupElement.classList.remove('popup_active');
+  document.removeEventListener('keydown', closePopupKeybord);
+};
+
+//закрытие попапа по клику на оверлей
+function closePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup_active')) {
+    closePopup(evt.target)
   }
 }
 
-//проверяем заполены ли инпуты
-function checkInputValue(inputOne, inputTwo, submitButton ) {
-  const isValid = inputOne.value.length > 0 && inputTwo.value.length > 0
-  setSubmitButtonStatus(isValid, submitButton)
-
-}
-
-
-
-//функция закрытия попапа
-const closePopup = (popup) => {
-  popup.classList.remove('popup_active')
-}
-
-//функция открытия попапа
-const openPopup = (popup) => {
-  popup.classList.add('popup_active')
-}
-
-//функция закрытия попапа по клику на оверлей
-function closePopupOverlay(popup) {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup_active')) {
-      closePopup(popup);
-    }
-  })
-}
-
 //функция закрытия попапа нажатием на клавишу Esc
-function closePopupKeybord(popup) {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-    }
-  })
+function closePopupKeybord(evt) {
+  if(evt.key === 'Escape') {
+     closePopup(document.querySelector('.popup_active'));
+  }
 }
-
-//на все попапы вешаем функцию закрытия попопа по клику на оверлей и нажатием на Esc
-allPopup.forEach(popup => {
-  closePopupOverlay(popup)
-  closePopupKeybord(popup)
-})
 
 //функция редактирования профиля
-function formSubmitHandler(evt) {
+function hendlerFormSubmit(evt) {
   evt.preventDefault();
   // Получение значение полей из свойства value
   const editName = profileEnterName.value
@@ -186,20 +151,23 @@ function hendlerDeleteCard(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-profileForm.addEventListener('submit', formSubmitHandler)
+profileForm.addEventListener('submit', hendlerFormSubmit)
 addPlaceForm.addEventListener('submit', hendlerAddPlace)
 
+popupEditProfile.addEventListener('keydown', closePopupKeybord)
+popupAddPlace.addEventListener('keydown', closePopupKeybord)
+popupImageXl.addEventListener('keydown', closePopupKeybord)
 
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile)) //открытие попапа редактирования профиля
-addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace)) // открытие попапа добавления места
+popupEditProfile.addEventListener('click', closePopupOverlay)
+popupAddPlace.addEventListener('click', closePopupOverlay)
+popupImageXl.addEventListener('click', closePopupOverlay)
 
-addPlaceButton.addEventListener('click', () => checkInputValue(inputPlaceName, inputPlaceLink, submitButtonAddPlace))
-profileEditButton.addEventListener('click', () => checkInputValue(profileEnterName, profileEnterAbout, submitButtonProfile))
+
+profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)) //открытие попапа редактирования профиля
+addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonProfile, allSelectors))// открытие попапа добавления места
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места
 closeButtonImageXl.addEventListener('click', () => closePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
-
-
 
 render()

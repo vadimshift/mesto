@@ -74,6 +74,15 @@ const submitButtonStatus = (inputList, submitButton, allSelectors) => {
   }
 };
 
+const allSelectors = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__enter',
+  submitButton: '.popup__submit-button',
+  submitButtonDisabled: 'popup__submit-button_disabled',
+  errorText: 'popup__error-message_active',
+  inputTypeError: 'popup__enter_error'
+}
+
 enableValidation(allSelectors)
 
 

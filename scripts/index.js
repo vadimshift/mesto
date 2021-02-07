@@ -26,7 +26,7 @@ const placeElements = document.querySelector('.elements') //контейнер �
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
 const allPopup = Array.from(document.querySelectorAll('.popup')) //находим все попапы
-const allInput = Array.from(document.querySelectorAll('.popup__enter'))
+const allInput = Array.from(document.querySelectorAll('.popup__enter')) //находим все инпуты
 
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
@@ -59,7 +59,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+//Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
   profileEnterName.value = newProfileName.textContent
   profileEnterAbout.value = newProfileAbout.textContent
@@ -170,8 +170,8 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile(), enableValidation(allSelectors)) //открытие попапа редактирования профиля
-addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors))
+profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile(), enableValidation(allSelectors)) //открытие формы редактирования профиля
+addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)) //открытие формы добавления места
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

@@ -141,6 +141,7 @@ function hendlerAddPlace(evt) {
   data.link = inputPlaceLink.value
   renderCards(data)
   addPlaceForm.reset()
+  submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)
   closePopup(popupAddPlace)
 }
 
@@ -168,8 +169,9 @@ popupAddPlace.addEventListener('click', closePopupOverlay)
 popupImageXl.addEventListener('click', closePopupOverlay)
 
 
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile()) //открытие попапа редактирования профиля
-addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace))
+
+profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile(), enableValidation(allSelectors)) //открытие попапа редактирования профиля
+addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors))
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

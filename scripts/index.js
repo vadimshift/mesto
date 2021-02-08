@@ -1,13 +1,3 @@
-/*-----------------------------------------------------------------------------------------------------
-
-Ирина, здравствуйте! Я прошу прощения, но когда я отправлял работу на ревью№2 я думал, что я все изменения
-правильно запушил, но как оказалось я накосячил с ветками, и на ревью№2 ушли не все исправления.
-Простите меня, я отвественный студент как мне кажется, но вот в этот раз накосячил.
-Вы не подумайте, что я Ваши замечания специально проигнорировал, это не так. Я очень уважительно отношусь к Вашему труду.
-
-Спасибо!
--------------------------------------------------------------------------------------------------------*/
-
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
 const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
@@ -102,7 +92,7 @@ function closePopupKeybord(evt) {
 }
 
 //функция редактирования профиля
-function hendlerFormSubmit(evt) {
+function hendleFormSubmit(evt) {
   evt.preventDefault();
   // Получение значение полей из свойства value
   const editName = profileEnterName.value
@@ -144,7 +134,7 @@ function render() {
   initialCards.forEach(renderCards);
 }
 //функция добавления новой карточки места
-function hendlerAddPlace(evt) {
+function hendleAddPlace(evt) {
   evt.preventDefault();
   const data = {}
   data.name = inputPlaceName.value
@@ -167,8 +157,8 @@ function hendlerDeleteCard(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-profileForm.addEventListener('submit', hendlerFormSubmit)
-addPlaceForm.addEventListener('submit', hendlerAddPlace)
+profileForm.addEventListener('submit', hendleFormSubmit)
+addPlaceForm.addEventListener('submit', hendleAddPlace)
 
 popupEditProfile.addEventListener('keydown', closePopupKeybord)
 popupAddPlace.addEventListener('keydown', closePopupKeybord)

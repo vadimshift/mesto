@@ -26,7 +26,8 @@ const placeElements = document.querySelector('.elements') //контейнер �
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
 
 const allPopup = Array.from(document.querySelectorAll('.popup')) //находим все попапы
-const allInput = Array.from(document.querySelectorAll('.popup__enter')) //находим все инпуты
+const allInputsProfile = Array.from(profileForm.querySelectorAll('.popup__enter')) //находим все инпуты формы профиля
+const allInputsAddPlace = Array.from(addPlaceForm.querySelectorAll('.popup__enter')) //находим все инпуты формы добавления места
 
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
@@ -141,7 +142,6 @@ function hendleAddPlace(evt) {
   data.link = inputPlaceLink.value
   renderCards(data)
   addPlaceForm.reset()
-  submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)
   closePopup(popupAddPlace)
 }
 
@@ -170,8 +170,8 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile), openPopupEditProfile(), enableValidation(allSelectors)) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => openPopup(popupAddPlace), submitButtonStatus(allInput, submitButtonAddPlace, allSelectors)) //открытие формы добавления места
+profileEditButton.addEventListener('click', () => {openPopup(popupEditProfile); openPopupEditProfile(); submitButtonStatus(allInputsProfile, submitButtonProfile, allSelectors);}) //открытие формы редактирования профиля
+addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); submitButtonStatus(allInputsAddPlace, submitButtonAddPlace, allSelectors);}) //открытие формы добавления места
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

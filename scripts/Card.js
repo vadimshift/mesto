@@ -56,10 +56,17 @@ class Card {
     this._element.querySelector('.element__like-button').addEventListener('click', () => {
       this._handleLikeIcon();
     });
+    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
+      this._hendleDeleteCard();
+    });
   }
   _handleLikeIcon() {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
+  _hendleDeleteCard() {
+    this._element.querySelector('.element__delete-button').closest('.element').remove();
+  }
+
 }
 
 initialCards.forEach((item) => {

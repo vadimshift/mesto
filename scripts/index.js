@@ -1,3 +1,4 @@
+import { Card } from './Card.js';
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
 const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
@@ -13,14 +14,14 @@ const closeButtonImageXl = document.querySelector('.popup__close-button_type_ima
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
 const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
-const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
+export const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
 
 const inputPlaceName = document.querySelector('.popup__enter_type_name-place') //инпут добавления ссылки на изображение места
 const inputPlaceLink = document.querySelector('.popup__enter_type_link-image') //инпут добавления названия места
 const addPlaceForm = document.querySelector('.popup__form_type_add-place') //форма добавления нового места
 
-const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
-const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
+export const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
+export const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
 
 const placeElements = document.querySelector('.elements') //контейнер с карточками места
 const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
@@ -67,7 +68,7 @@ const openPopupEditProfile = () => {
 }
 
 //функция открытия попапа
-function openPopup(popupElement) {
+export function openPopup(popupElement) {
   popupElement.classList.add('popup_active')
   document.addEventListener('keydown', closePopupKeybord)
 }
@@ -105,36 +106,18 @@ function hendleFormSubmit(evt) {
 
   closePopup(popupEditProfile)
 }
-/*
-//функция отрисовки разметки карточки с местом
-function getCardElement(data) {
-  const placeElement = placeTemplate.cloneNode(true); //клонируем темплейт тег
-  const elementImage = placeElement.querySelector('.element__image') //переменная в которой содержится картинка из карточки
 
-  placeElement.querySelector('.element__text-title').textContent = data.name //подставляем в темлейт тег название места
-  placeElement.querySelector('.element__image').src = data.link //подставляем картинку (ссылку)
-
-  placeElement.querySelector('.element__delete-button').addEventListener('click', hendleDeleteCard) //удаляем карточку
-  placeElement.querySelector('.element__like-button').addEventListener('click', handleLikeIcon) //ставим лайки на карточку
-  //функция разворота картинки на весь экран
-  elementImage.addEventListener('click', function (evt) {
-    openPopup(popupImageXl)
-    imageXlName.textContent = data.name
-    imageXlLink.src = data.link
-  })
-  return placeElement
-}
-*/
-/*
 //функция рендер карточки
-function renderCards(data) {
-  placeElements.prepend(getCardElement(data))
+function renderCards(item) {
+  const card = new Card(item, '.template-place');
+	const cardElement = card.generateCard();
+  document.querySelector('.elements').prepend(cardElement);
 }
 
 //функция рендер карточки для массива
 function render() {
   initialCards.forEach(renderCards);
-}*/
+}
 
 //функция добавления новой карточки места
 function hendleAddPlace(evt) {
@@ -145,16 +128,6 @@ function hendleAddPlace(evt) {
   renderCards(data)
   addPlaceForm.reset()
   closePopup(popupAddPlace)
-}
-
-//лайк карточки места
-function handleLikeIcon(evt) {
-  evt.target.classList.toggle('element__like-button_active')
-}
-
-//удаление карточки места
-function hendleDeleteCard(evt) {
-  evt.target.closest('.element').remove();
 }
 
 // Прикрепляем обработчик к форме:
@@ -179,4 +152,4 @@ closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile))
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места
 closeButtonImageXl.addEventListener('click', () => closePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
 
-/*render()*/
+render()

@@ -48,7 +48,17 @@ class Card {
     this._element.querySelector('.element__image').src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
 
+    this._setEventListeners();
+
     return this._element;
+  }
+  _setEventListeners() {
+    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+      this._handleLikeIcon();
+    });
+  }
+  _handleLikeIcon() {
+    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
 }
 

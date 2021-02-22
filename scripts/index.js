@@ -105,7 +105,7 @@ function hendleFormSubmit(evt) {
 
   closePopup(popupEditProfile)
 }
-
+/*
 //функция отрисовки разметки карточки с местом
 function getCardElement(data) {
   const placeElement = placeTemplate.cloneNode(true); //клонируем темплейт тег
@@ -114,7 +114,7 @@ function getCardElement(data) {
   placeElement.querySelector('.element__text-title').textContent = data.name //подставляем в темлейт тег название места
   placeElement.querySelector('.element__image').src = data.link //подставляем картинку (ссылку)
 
-  placeElement.querySelector('.element__delete-button').addEventListener('click', hendlerDeleteCard) //удаляем карточку
+  placeElement.querySelector('.element__delete-button').addEventListener('click', hendleDeleteCard) //удаляем карточку
   placeElement.querySelector('.element__like-button').addEventListener('click', handleLikeIcon) //ставим лайки на карточку
   //функция разворота картинки на весь экран
   elementImage.addEventListener('click', function (evt) {
@@ -124,7 +124,8 @@ function getCardElement(data) {
   })
   return placeElement
 }
-
+*/
+/*
 //функция рендер карточки
 function renderCards(data) {
   placeElements.prepend(getCardElement(data))
@@ -133,7 +134,8 @@ function renderCards(data) {
 //функция рендер карточки для массива
 function render() {
   initialCards.forEach(renderCards);
-}
+}*/
+
 //функция добавления новой карточки места
 function hendleAddPlace(evt) {
   evt.preventDefault();
@@ -151,7 +153,7 @@ function handleLikeIcon(evt) {
 }
 
 //удаление карточки места
-function hendlerDeleteCard(evt) {
+function hendleDeleteCard(evt) {
   evt.target.closest('.element').remove();
 }
 
@@ -177,4 +179,4 @@ closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile))
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места
 closeButtonImageXl.addEventListener('click', () => closePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
 
-render()
+/*render()*/

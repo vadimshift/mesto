@@ -1,4 +1,6 @@
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
 const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
@@ -32,6 +34,16 @@ const allInputsAddPlace = Array.from(addPlaceForm.querySelectorAll('.popup__ente
 
 const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
 const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
+
+export const allSelectors = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__enter',
+  submitButton: '.popup__submit-button',
+  submitButtonDisabled: 'popup__submit-button_disabled',
+  errorText: 'popup__error-message_active',
+  inputTypeError: 'popup__enter_error'
+}
+
 
 //Объект со всеми необходимыми классами для валидации форм.
 

@@ -1,8 +1,8 @@
 import { allSelectors } from './index.js'
 export class FormValidator {
   constructor(allSelectors, form) {
-    this._form = form
     this._allSelectors = allSelectors
+    this._form = form
   }
 
   _showInputError() {
@@ -42,6 +42,15 @@ export class FormValidator {
     })
 
   }
+  enableValidation() {
+    const allForms = Array.from(document.querySelectorAll(this.allSelectors.formSelector)); //делаем массив из всех форм
+    allForms.forEach((formElement) => {
+      formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      })
+      setEventListeners(formElement, this.allSelectors); // Для каждой формы вызовем функцию setEventListeners
+    })
+  }
 
   _inputCheckValidity() {
     return inputList.some((inputElement) => {
@@ -63,8 +72,6 @@ export class FormValidator {
       submitButton.removeAttribute('disabled')
     }
   }
-  enableValidation() {}
 
 }
-
 

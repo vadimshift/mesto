@@ -1,58 +1,63 @@
-import { allSelectors } from './index.js'
 export class FormValidator {
   constructor(allSelectors, form) {
     this._allSelectors = allSelectors
     this._form = form
+    this._formSelector = allSelectors.formSelector
+    this._inputSelector = allSelectors.inputSelector
+    this._submitButton = allSelectors.submitButton
+    this._submitButtonDisabled = allSelectors.submitButtonDisabled
+    this._errorText = allSelectors.errorText
+    this._inputTypeError = allSelectors.inputTypeError
   }
 
-  _showInputError() {
+  _showInputError = (formElement, inputElement, errorMessage, allSelectors) => {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.add(this._allSelectors.inputTypeError)
+    inputElement.classList.add(this._inputTypeError)
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._allSelectors.errorText)
+    errorElement.classList.add(this._errorText)
   }
 
-  _hideInputError() {
+  _hideInputError = (formElement, inputElement, allSelectors) => {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.remove(this._allSelectors.inputTypeError)
-    errorElement.classList.remove(this._allSelectors.errorText)
+    inputElement.classList.remove(this._inputTypeError)
+    errorElement.classList.remove(this._errorText)
     errorElement.textContent = ''
   }
 
-  _isValidInput() {
+  _isValidInput = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
-      showInputError(formElement, inputElement, inputElement.validationMessage, this._allSelectors);
+      showInputError(this._form, inputElement, inputElement.validationMessage, this._allSelectors);
     } else {
       // Если проходит, скроем
-      hideInputError(formElement, inputElement, this._allSelectors);
+      hideInputError(this._form, inputElement, this._allSelectors);
     }
   }
 
-  _setEventListeners() {
-    const allInputs = Array.from(this._form.querySelectorAll(this._allSelectors.inputSelector)) //делаем массив из всех инпутов
-    const submitButton = this._form.querySelector(this._allSelectors.submitButton)
+  _setEventListeners = (formElement, allSelectors) => {
+    const allInputs = Array.from(this._form.querySelectorAll(this._inputSelector)) //делаем массив из всех инпутов
+    const submitButton = this._form.querySelector(this._submitButton)
     allInputs.forEach((inputElement) => {
       // каждому полю добавляем обработчик события input
       inputElement.addEventListener('input', () => {
         // Вызываем isValid, передаем форму и инпут
-        isValidInput(formElement, inputElement)
-        submitButtonStatus(allInputs, submitButton, this._allSelectors);
+        isValidInput(this._form, inputElement)
+        submitButtonStatus(allInputs, submitButton, allSelectors);
       })
     })
-
   }
-  enableValidation() {
-    const allForms = Array.from(document.querySelectorAll(this.allSelectors.formSelector)); //делаем массив из всех форм
+
+  enableValidation = (allSelectors) => {
+    const allForms = Array.from(document.querySelectorAll(this._formSelector)); //делаем массив из всех форм
     allForms.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
+      this._form.addEventListener('submit', (evt) => {
         evt.preventDefault();
       })
-      setEventListeners(formElement, this.allSelectors); // Для каждой формы вызовем функцию setEventListeners
+      setEventListeners(this._form, this._allSelectors); // Для каждой формы вызовем функцию setEventListeners
     })
   }
 
-  _inputCheckValidity() {
+  _inputCheckValidity = (inputList) => {
     return inputList.some((inputElement) => {
       // Если поле не валидно, вернем true
       // Обход массива прекратится и вся фунцкция
@@ -61,17 +66,16 @@ export class FormValidator {
     })
   }
 
-  _submitButtonStatus() {
+  _submitButtonStatus = (inputList, submitButton, allSelectors) => {
     if (inputCheckValidity(inputList)) {
       // делаем кнопку неактивной
-      submitButton.classList.add(this._allSelectors.submitButtonDisabled);
+      submitButton.classList.add(this._submitButtonDisabled);
       submitButton.setAttribute('disabled', true)
     } else {
       // иначе делаем кнопку активной
-      submitButton.classList.remove(this._allSelectors.submitButtonDisabled);
+      submitButton.classList.remove(this._submitButtonDisabled);
       submitButton.removeAttribute('disabled')
     }
   }
 
 }
-

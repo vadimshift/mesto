@@ -131,6 +131,10 @@ function render() {
   initialCards.forEach(renderCards);
 }
 
+function enableVal (allSelectors, form) {
+  const formvalid = new FormValidator(allSelectors, form)
+  formvalid.forEach(formvalid.enableValidation(form))
+}
 
 //функция добавления новой карточки места
 function hendleAddPlace(evt) {
@@ -159,8 +163,8 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 profileEditButton.addEventListener('click', () => {openPopup(popupEditProfile); openPopupEditProfile(); submitButtonStatus(allInputsProfile, submitButtonProfile, allSelectors);}) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); submitButtonStatus(allInputsAddPlace, submitButtonAddPlace, allSelectors);}) //открытие формы добавления места
-
+/*addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); submitButtonStatus(allInputsAddPlace, submitButtonAddPlace, allSelectors);}) //открытие формы добавления места*/
+addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); enableVal(allSelectors, addPlaceForm);})
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

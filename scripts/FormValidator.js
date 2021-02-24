@@ -2,29 +2,23 @@ export class FormValidator {
   constructor(allSelectors, form) {
     this._allSelectors = allSelectors
     this._form = form
-    this._formSelector = allSelectors.formSelector
-    this._inputSelector = allSelectors.inputSelector
-    this._submitButton = allSelectors.submitButton
-    this._submitButtonDisabled = allSelectors.submitButtonDisabled
-    this._errorText = allSelectors.errorText
-    this._inputTypeError = allSelectors.inputTypeError
   }
 
-  _showInputError = (formElement, inputElement, errorMessage, allSelectors) => {
+  _showInputError (formElement, inputElement, errorMessage, allSelectors) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.add(this._inputTypeError)
+    inputElement.classList.add(this._allSelectors)
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._errorText)
+    errorElement.classList.add(this._allSelectors)
   }
 
-  _hideInputError = (formElement, inputElement, allSelectors) => {
+  _hideInputError (formElement, inputElement, allSelectors) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.remove(this._inputTypeError)
-    errorElement.classList.remove(this._errorText)
+    inputElement.classList.remove(this._allSelectors)
+    errorElement.classList.remove(this._allSelectors)
     errorElement.textContent = ''
   }
 
-  _isValidInput = (formElement, inputElement) => {
+  _isValidInput (formElement, inputElement) {
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
       showInputError(this._form, inputElement, inputElement.validationMessage, this._allSelectors);
@@ -34,7 +28,7 @@ export class FormValidator {
     }
   }
 
-  _setEventListeners = (formElement, allSelectors) => {
+  _setEventListeners(formElement, allSelectors) {
     const allInputs = Array.from(this._form.querySelectorAll(this._inputSelector)) //делаем массив из всех инпутов
     const submitButton = this._form.querySelector(this._submitButton)
     allInputs.forEach((inputElement) => {
@@ -47,7 +41,7 @@ export class FormValidator {
     })
   }
 
-  enableValidation = (allSelectors) => {
+  enableValidation(formElement) {
     const allForms = Array.from(document.querySelectorAll(this._formSelector)); //делаем массив из всех форм
     allForms.forEach((formElement) => {
       this._form.addEventListener('submit', (evt) => {
@@ -57,7 +51,7 @@ export class FormValidator {
     })
   }
 
-  _inputCheckValidity = (inputList) => {
+  _inputCheckValidity (inputList) {
     return inputList.some((inputElement) => {
       // Если поле не валидно, вернем true
       // Обход массива прекратится и вся фунцкция
@@ -66,7 +60,7 @@ export class FormValidator {
     })
   }
 
-  _submitButtonStatus = (inputList, submitButton, allSelectors) => {
+  _submitButtonStatus (inputList, submitButton, allSelectors) {
     if (inputCheckValidity(inputList)) {
       // делаем кнопку неактивной
       submitButton.classList.add(this._submitButtonDisabled);

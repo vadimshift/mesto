@@ -133,7 +133,7 @@ function render() {
 
 function enableVal (allSelectors, form) {
   const formvalid = new FormValidator(allSelectors, form)
-  formvalid.forEach(formvalid.enableValidation(form))
+  formvalid.enableValidation(form)
 }
 
 //функция добавления новой карточки места

@@ -1,75 +1,53 @@
 export class FormValidator {
-  constructor(allSelectors, form) {
-    this._allSelectors = allSelectors
+  constructor(config, form) {
+    this._config = config
     this._form = form
+    this._formSelector = config.formSelector
+    this._inputSelector = config.inputSelector
+    this._submitButton = config.submitButton
+    this._submitButtonDisabled = config.submitButtonDisabled
+    this._errorText = config.errorText
+    this._inputTypeError = config.inputTypeError
+
+  }
+  enableValidation() {
+    this._setEventListeners()
   }
 
-  _showInputError (formElement, inputElement, errorMessage, allSelectors) {
-    const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.add(this._allSelectors)
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._allSelectors)
-  }
-
-  _hideInputError (formElement, inputElement, allSelectors) {
-    const errorElement = this._form.querySelector(`.${inputElement.id}-error`)
-    inputElement.classList.remove(this._allSelectors)
-    errorElement.classList.remove(this._allSelectors)
-    errorElement.textContent = ''
-  }
-
-  _isValidInput (formElement, inputElement) {
-    if (!inputElement.validity.valid) {
-      // Если поле не проходит валидацию, покажем ошибку
-      showInputError(this._form, inputElement, inputElement.validationMessage, this._allSelectors);
-    } else {
-      // Если проходит, скроем
-      hideInputError(this._form, inputElement, this._allSelectors);
-    }
-  }
-
-  _setEventListeners(formElement, allSelectors) {
-    const allInputs = Array.from(this._form.querySelectorAll(this._inputSelector)) //делаем массив из всех инпутов
-    const submitButton = this._form.querySelector(this._submitButton)
-    allInputs.forEach((inputElement) => {
+  _setEventListeners() {
+    this._allInputs = Array.from(this._form.querySelectorAll(this._inputSelector))
+    this._submitButton = this._form.querySelector(this._submitButton)
+    this._allInputs.forEach((inputElement) => {
       // каждому полю добавляем обработчик события input
       inputElement.addEventListener('input', () => {
         // Вызываем isValid, передаем форму и инпут
-        isValidInput(this._form, inputElement)
-        submitButtonStatus(allInputs, submitButton, allSelectors);
+        this._isValidInput(inputElement)
+        /*submitButtonStatus(allInputs, submitButton, allSelectors);*/
       })
     })
-  }
 
-  enableValidation(formElement) {
-    const allForms = Array.from(document.querySelectorAll(this._formSelector)); //делаем массив из всех форм
-    allForms.forEach((formElement) => {
-      this._form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      })
-      setEventListeners(this._form, this._allSelectors); // Для каждой формы вызовем функцию setEventListeners
-    })
   }
-
-  _inputCheckValidity (inputList) {
-    return inputList.some((inputElement) => {
-      // Если поле не валидно, вернем true
-      // Обход массива прекратится и вся фунцкция
-      // inputCheckValidity вернёт true
-      return !inputElement.validity.valid;
-    })
-  }
-
-  _submitButtonStatus (inputList, submitButton, allSelectors) {
-    if (inputCheckValidity(inputList)) {
-      // делаем кнопку неактивной
-      submitButton.classList.add(this._submitButtonDisabled);
-      submitButton.setAttribute('disabled', true)
+  _isValidInput(inputElement) {
+    if (!inputElement.validity.valid) {
+      // Если поле не проходит валидацию, покажем ошибку
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      // иначе делаем кнопку активной
-      submitButton.classList.remove(this._submitButtonDisabled);
-      submitButton.removeAttribute('disabled')
+      // Если проходит, скроем
+      this._hideInputError(inputElement);
     }
   }
+  _showInputError(inputElement, errorMessage) {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-error`)
+    inputElement.classList.add(this._inputTypeError)
+    this._errorElement.textContent = errorMessage;
+    this._errorElement.classList.add(this._errorText)
+  }
 
+  _hideInputError(inputElement) {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-error`)
+    inputElement.classList.remove(this._inputTypeError)
+    this._errorElement.classList.remove(this._errorText)
+    this._errorElement.textContent = ''
+  }
 }
+

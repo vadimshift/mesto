@@ -134,6 +134,7 @@ function render() {
 function enableVal (allSelectors, form) {
   const formvalid = new FormValidator(allSelectors, form)
   formvalid.enableValidation(form)
+
 }
 
 //функция добавления новой карточки места

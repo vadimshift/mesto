@@ -12,17 +12,20 @@ export class FormValidator {
   }
   enableValidation() {
     this._setEventListeners()
+
   }
 
   _setEventListeners() {
+
     this._allInputs = Array.from(this._form.querySelectorAll(this._inputSelector))
     this._submitButton = this._form.querySelector(this._submitButton)
+    this._submitButtonStatus(this._allInputs)
     this._allInputs.forEach((inputElement) => {
       // каждому полю добавляем обработчик события input
       inputElement.addEventListener('input', () => {
         // Вызываем isValid, передаем форму и инпут
         this._isValidInput(inputElement)
-        /*submitButtonStatus(allInputs, submitButton, allSelectors);*/
+        this._submitButtonStatus(this._allInputs, this._submitButton);
       })
     })
 
@@ -49,5 +52,27 @@ export class FormValidator {
     this._errorElement.classList.remove(this._errorText)
     this._errorElement.textContent = ''
   }
+
+  _inputCheckValidity(allInputs) {
+    return allInputs.some((inputElement) => {
+      // Если поле не валидно, вернем true
+      // Обход массива прекратится и вся фунцкция
+      // inputCheckValidity вернёт true
+      return !inputElement.validity.valid;
+    })
+  }
+  _submitButtonStatus(allInputs) {
+    if (this._inputCheckValidity(allInputs)) {
+      // делаем кнопку неактивной
+      this._submitButton.classList.add(this._submitButtonDisabled);
+      this._submitButton.setAttribute('disabled', true)
+    } else {
+      // иначе делаем кнопку активной
+      this._submitButton.classList.remove(this._submitButtonDisabled);
+      this._submitButton.removeAttribute('disabled')
+    }
+  }
+
+
 }
 

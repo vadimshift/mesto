@@ -131,7 +131,8 @@ function render() {
   initialCards.forEach(renderCards);
 }
 
-function enableVal (allSelectors, form) {
+//функция включения валидации формы
+function enableValidationForm (allSelectors, form) {
   const formvalid = new FormValidator(allSelectors, form)
   formvalid.enableValidation(form)
 
@@ -163,9 +164,8 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 
-profileEditButton.addEventListener('click', () => {openPopup(popupEditProfile); openPopupEditProfile(); submitButtonStatus(allInputsProfile, submitButtonProfile, allSelectors);}) //открытие формы редактирования профиля
-/*addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); submitButtonStatus(allInputsAddPlace, submitButtonAddPlace, allSelectors);}) //открытие формы добавления места*/
-addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); enableVal(allSelectors, addPlaceForm);})
+profileEditButton.addEventListener('click', () => {openPopup(popupEditProfile); openPopupEditProfile(); enableValidationForm(allSelectors, profileForm);}) //открытие формы редактирования профиля
+addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); enableValidationForm(allSelectors, addPlaceForm);}) //открытие формы добавления места
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

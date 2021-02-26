@@ -1,12 +1,10 @@
-import { popupImageXl, imageXlLink, imageXlName } from './constants.js'
-import {openPopup } from './index.js'
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     // манипуляции с темплейт тегом
@@ -38,7 +36,7 @@ export class Card {
       this._hendleDeleteCard();
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._openPreviewImage();
+      this._handleCardClick(this._name, this._link);
     });
   }
   _handleLikeIcon() {
@@ -46,11 +44,6 @@ export class Card {
   }
   _hendleDeleteCard() {
     this._element.querySelector('.element__delete-button').closest('.element').remove();
-  }
-  _openPreviewImage() {
-    openPopup(popupImageXl)
-    imageXlName.textContent = this._name
-    imageXlLink.src = this._link
   }
 }
 

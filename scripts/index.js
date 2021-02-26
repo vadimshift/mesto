@@ -3,7 +3,7 @@ import { FormValidator } from './FormValidator.js'
 import { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
          newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
         closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
-        addPlaceForm, allSelectors, initialCards } from './constants.js'
+        addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName } from './constants.js'
 
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
@@ -29,6 +29,12 @@ function closePopupOverlay(evt) {
     closePopup(evt.target)
   }
 }
+//открытие попапа с большой картинкой
+export function handleCardClick(name, link) {
+  imageXlLink.src = link
+  imageXlName.textContent = name
+  openPopup(popupImageXl)
+}
 
 //функция закрытия попапа нажатием на клавишу Esc
 function closePopupKeybord(evt) {
@@ -53,7 +59,7 @@ function hendleFormSubmit(evt) {
 
 //функция рендер карточки
 function renderCards(item) {
-  const card = new Card(item, '.template-place');
+  const card = new Card(item, '.template-place', handleCardClick);
 	const cardElement = card.generateCard();
   document.querySelector('.elements').prepend(cardElement);
 }

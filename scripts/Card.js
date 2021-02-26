@@ -5,6 +5,7 @@ export class Card {
     this._alt = data.alt;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+
   }
   _getTemplate() {
     // манипуляции с темплейт тегом
@@ -19,9 +20,12 @@ export class Card {
   //подготовка карточки к публикации
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.element__image');
+    this._cardLikeButton = this._element.querySelector('.element__like-button');
+    this._cardDeleteButton = this._element.querySelector('.element__delete-button');
 
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._alt;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._alt;
     this._element.querySelector('.element__text-title').textContent = this._name;
 
     this._setEventListeners();
@@ -29,21 +33,21 @@ export class Card {
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+    this._cardLikeButton.addEventListener('click', () => {
       this._handleLikeIcon();
     });
-    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
+    this._cardDeleteButton.addEventListener('click', () => {
       this._hendleDeleteCard();
     });
-    this._element.querySelector('.element__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
   }
   _handleLikeIcon() {
-    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._cardLikeButton.classList.toggle('element__like-button_active');
   }
   _hendleDeleteCard() {
-    this._element.querySelector('.element__delete-button').closest('.element').remove();
+    this._cardDeleteButton.closest('.element').remove();
   }
 }
 

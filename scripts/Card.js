@@ -5,6 +5,7 @@ export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._alt = data.alt;
     this._cardSelector = cardSelector;
   }
   _getTemplate() {
@@ -22,6 +23,7 @@ export class Card {
     this._element = this._getTemplate();
 
     this._element.querySelector('.element__image').src = this._link;
+    this._element.querySelector('.element__image').alt = this._alt;
     this._element.querySelector('.element__text-title').textContent = this._name;
 
     this._setEventListeners();

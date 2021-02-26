@@ -25,7 +25,7 @@ export class FormValidator {
       inputElement.addEventListener('input', () => {
         // Вызываем isValidInput, передаем форму и инпут
         this._isValidInput(inputElement)
-        this._submitButtonStatus(this._allInputs, this._submitButton)
+        this._submitButtonStatus()
       })
     })
   }
@@ -58,8 +58,8 @@ export class FormValidator {
   }
 
   //проверяем наличие невалидного инпута
-  _inputCheckValidity(allInputs) {
-    return allInputs.some((inputElement) => {
+  _inputCheckValidity() {
+    return this._allInputs.some((inputElement) => {
       // Если поле не валидно, вернем true
       // Обход массива прекратится и вся фунцкция
       // inputCheckValidity вернёт true
@@ -68,8 +68,8 @@ export class FormValidator {
   }
 
   //меняем статус кнопки в зависимости от валидности инпутов
-  _submitButtonStatus(allInputs) {
-    if (this._inputCheckValidity(allInputs)) {
+  _submitButtonStatus() {
+    if (this._inputCheckValidity()) {
       // делаем кнопку неактивной
       this._submitButton.classList.add(this._submitButtonDisabled)
       this._submitButton.setAttribute('disabled', true)

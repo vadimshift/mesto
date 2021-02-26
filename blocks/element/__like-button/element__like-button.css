@@ -1,8 +1,8 @@
 .element__like-button {
   background-image: url(../../../images/like-image.svg);
   background-repeat: no-repeat;
-  height: 18px;
-  width: 20px;
+  min-height: 18px;
+  min-width: 20px;
   border: none;
   box-sizing: border-box;
   background-size: contain;
@@ -15,10 +15,3 @@
 .element__like-button:hover {
   opacity: .5;
 }
-
-/*
-.element__like-button:active:hover {
-  background-image: url(../../../images/like-image-active.svg);
-  opacity: 1;
-}
-*/

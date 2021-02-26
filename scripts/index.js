@@ -1,78 +1,10 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+import { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
+         newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
+        closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
+        addPlaceForm, allSelectors, initialCards } from './constants.js'
 
-const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
-const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
-const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
-const profileEnterAbout = document.querySelector('.popup__enter_type_about') //поле ввода "о себе" в профиле
-const newProfileName = document.querySelector('.profile__title') //новое имя профиля
-const newProfileAbout = document.querySelector('.profile__subtitle') //новое о себе профиля
-
-const addPlaceButton = document.querySelector('.profile__add-button') //кнопка добавления места
-
-const closeButtonProfile = document.querySelector('.popup__close-button_type_edit-profile') // кнопка закрытия попапа редактирования профиля
-const closeButtonAddPlace = document.querySelector('.popup__close-button_type_add-place') // кнопка закрытия попапа добавления места
-const closeButtonImageXl = document.querySelector('.popup__close-button_type_image-xl') // кнопка закрытия попапа с фотографией
-
-const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
-const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
-export const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
-
-const inputPlaceName = document.querySelector('.popup__enter_type_name-place') //инпут добавления ссылки на изображение места
-const inputPlaceLink = document.querySelector('.popup__enter_type_link-image') //инпут добавления названия места
-const addPlaceForm = document.querySelector('.popup__form_type_add-place') //форма добавления нового места
-
-export const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
-export const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
-
-const placeElements = document.querySelector('.elements') //контейнер с карточками места
-const placeTemplate = document.querySelector('.template-place').content; //темплейт тег карточки места
-
-const allPopup = Array.from(document.querySelectorAll('.popup')) //находим все попапы
-const allInputsProfile = Array.from(profileForm.querySelectorAll('.popup__enter')) //находим все инпуты формы профиля
-const allInputsAddPlace = Array.from(addPlaceForm.querySelectorAll('.popup__enter')) //находим все инпуты формы добавления места
-
-const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
-const submitButtonProfile = document.querySelector('.popup__submit-button_type_edit-profile')
-
-export const allSelectors = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__enter',
-  submitButton: '.popup__submit-button',
-  submitButtonDisabled: 'popup__submit-button_disabled',
-  errorText: 'popup__error-message_active',
-  inputTypeError: 'popup__enter_error'
-}
-
-
-//Объект со всеми необходимыми классами для валидации форм.
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
   profileEnterName.value = newProfileName.textContent

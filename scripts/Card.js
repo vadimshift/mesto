@@ -1,4 +1,6 @@
-import { openPopup, popupImageXl, imageXlLink, imageXlName } from './index.js'
+import { popupImageXl, imageXlLink, imageXlName } from './constants.js'
+import {openPopup } from './index.js'
+
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;

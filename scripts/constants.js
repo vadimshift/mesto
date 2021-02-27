@@ -9,10 +9,6 @@ const newProfileAbout = document.querySelector('.profile__subtitle') //ново�
 
 const addPlaceButton = document.querySelector('.profile__add-button') //кнопка добавления места
 
-const closeButtonProfile = document.querySelector('.popup__close-button_type_edit-profile') // кнопка закрытия попапа редактирования профиля
-const closeButtonAddPlace = document.querySelector('.popup__close-button_type_add-place') // кнопка закрытия попапа добавления места
-const closeButtonImageXl = document.querySelector('.popup__close-button_type_image-xl') // кнопка закрытия попапа с фотографией
-
 const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
 const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
 const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
@@ -24,6 +20,7 @@ const addPlaceForm = document.querySelector('.popup__form_type_add-place') //ф�
 const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
 const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
 const elements = document.querySelector('.elements') // контейнер с карточками
+const popups = document.querySelectorAll('.popup')
 
 const allSelectors = {
   formSelector: '.popup__form',
@@ -39,8 +36,6 @@ const enableValidationAddPlaceForm = validationAddPlaceForm.enableValidation(add
 
 const validationProfileForm = new FormValidator(allSelectors, profileForm)
 const enableValidationProfileForm = validationProfileForm.enableValidation(profileForm)
-
-
 
 
 //Объект со всеми необходимыми классами для валидации форм.
@@ -81,8 +76,9 @@ const initialCards = [
 
 export {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
-  addPlaceButton, closeButtonProfile, closeButtonAddPlace, closeButtonImageXl, popupEditProfile, popupAddPlace,
+  addPlaceButton, popupEditProfile, popupAddPlace,
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
-  elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm
+  elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
+  popups
 }
 

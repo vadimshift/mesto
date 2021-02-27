@@ -1,11 +1,9 @@
 import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
-  newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
-  closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
+  newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
-  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm
+  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
 } from './constants.js'
 
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
@@ -28,10 +26,18 @@ function closePopup(popupElement) {
 
 //закрытие попапа по клику на оверлей
 function closePopupOverlay(evt) {
-  if (evt.target.classList.contains('popup_active')) {
-    closePopup(evt.target)
-  }
+  popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_active')) {
+        closePopup(evt.target)
+      }
+      if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup)
+      }
+    })
+  })
 }
+
 //открытие попапа с большой картинкой
 export function handleCardClick(name, link) {
   imageXlLink.src = link
@@ -88,10 +94,6 @@ function hendleAddPlace(evt) {
 profileForm.addEventListener('submit', hendleFormSubmit)
 addPlaceForm.addEventListener('submit', hendleAddPlace)
 
-popupEditProfile.addEventListener('keydown', closePopupKeybord)
-popupAddPlace.addEventListener('keydown', closePopupKeybord)
-popupImageXl.addEventListener('keydown', closePopupKeybord)
-
 popupEditProfile.addEventListener('click', closePopupOverlay)
 popupAddPlace.addEventListener('click', closePopupOverlay)
 popupImageXl.addEventListener('click', closePopupOverlay)
@@ -99,10 +101,6 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 profileEditButton.addEventListener('click', () => { openPopup(popupEditProfile); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
-
-closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
-closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места
-closeButtonImageXl.addEventListener('click', () => closePopup(popupImageXl)) // закрытие попапа с фотографией на весь экран
+addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
 
 render()

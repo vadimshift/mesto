@@ -1,9 +1,12 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
-import { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
-         newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
-        closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
-        addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements } from './constants.js'
+import {
+  profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
+  newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
+  closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
+  addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
+  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm
+} from './constants.js'
 
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
@@ -38,8 +41,8 @@ export function handleCardClick(name, link) {
 
 //функция закрытия попапа нажатием на клавишу Esc
 function closePopupKeybord(evt) {
-  if(evt.key === 'Escape') {
-     closePopup(document.querySelector('.popup_active'));
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_active'));
   }
 }
 
@@ -60,20 +63,13 @@ function hendleFormSubmit(evt) {
 //функция рендер карточки
 function renderCards(item) {
   const card = new Card(item, '.template-place', handleCardClick);
-	const cardElement = card.generateCard();
+  const cardElement = card.generateCard();
   elements.prepend(cardElement);
 }
 
 //функция рендер карточки для массива
 function render() {
   initialCards.forEach(renderCards);
-}
-
-//функция включения валидации формы
-function enableValidationForm (allSelectors, form) {
-  const formvalid = new FormValidator(allSelectors, form)
-  formvalid.enableValidation(form)
-
 }
 
 //функция добавления новой карточки места
@@ -102,8 +98,8 @@ popupImageXl.addEventListener('click', closePopupOverlay)
 
 
 
-profileEditButton.addEventListener('click', () => {openPopup(popupEditProfile); openPopupEditProfile(); enableValidationForm(allSelectors, profileForm);}) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => {openPopup(popupAddPlace); enableValidationForm(allSelectors, addPlaceForm);}) //открытие формы добавления места
+profileEditButton.addEventListener('click', () => { openPopup(popupEditProfile); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
+addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupEditProfile)) // закрытие папапа редактирования профиля
 closeButtonAddPlace.addEventListener('click', () => closePopup(popupAddPlace)) // закрытие попапа добавления места

@@ -1,3 +1,5 @@
+import { FormValidator } from './FormValidator.js'
+
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
 const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
@@ -23,7 +25,6 @@ const imageXlLink = document.querySelector('.popup__image-xl') //ссылка н
 const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
 const elements = document.querySelector('.elements') // контейнер с карточками
 
-
 const allSelectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__enter',
@@ -32,6 +33,14 @@ const allSelectors = {
   errorText: 'popup__error-message_active',
   inputTypeError: 'popup__enter_error'
 }
+//создаем экземпляр валидации для форм и включаем валидацию этой формы
+const validationAddPlaceForm = new FormValidator(allSelectors, addPlaceForm)
+const enableValidationAddPlaceForm = validationAddPlaceForm.enableValidation(addPlaceForm)
+
+const validationProfileForm = new FormValidator(allSelectors, profileForm)
+const enableValidationProfileForm = validationProfileForm.enableValidation(profileForm)
+
+
 
 
 //Объект со всеми необходимыми классами для валидации форм.
@@ -55,7 +64,7 @@ const initialCards = [
   {
     name: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt:  'Фото горы'
+    alt: 'Фото горы'
   },
   {
     name: 'Холмогорский район',
@@ -70,7 +79,10 @@ const initialCards = [
 ];
 
 
-export { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
-          addPlaceButton, closeButtonProfile, closeButtonAddPlace, closeButtonImageXl, popupEditProfile, popupAddPlace,
-          popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards, elements }
+export {
+  profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
+  addPlaceButton, closeButtonProfile, closeButtonAddPlace, closeButtonImageXl, popupEditProfile, popupAddPlace,
+  popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
+  elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm
+}
 

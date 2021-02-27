@@ -25,18 +25,17 @@ function closePopup(popupElement) {
 };
 
 //закрытие попапа по клику на оверлей
-function closePopupOverlay(evt) {
-  popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup_active')) {
-        closePopup(evt.target)
-      }
-      if (evt.target.classList.contains('popup__close-button')) {
-        closePopup(popup)
-      }
-    })
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_active')) {
+      closePopup(evt.target)
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup)
+    }
   })
-}
+})
+
 
 //открытие попапа с большой картинкой
 export function handleCardClick(name, link) {
@@ -93,12 +92,6 @@ function hendleAddPlace(evt) {
 // он будет следить за событием “submit” - «отправка»
 profileForm.addEventListener('submit', hendleFormSubmit)
 addPlaceForm.addEventListener('submit', hendleAddPlace)
-
-popupEditProfile.addEventListener('click', closePopupOverlay)
-popupAddPlace.addEventListener('click', closePopupOverlay)
-popupImageXl.addEventListener('click', closePopupOverlay)
-
-
 
 profileEditButton.addEventListener('click', () => { openPopup(popupEditProfile); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места

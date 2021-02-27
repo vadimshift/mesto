@@ -21,6 +21,8 @@ const addPlaceForm = document.querySelector('.popup__form_type_add-place') //ф�
 
 const imageXlLink = document.querySelector('.popup__image-xl') //ссылка на картинку
 const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
+const elements = document.querySelector('.elements') // контейнер с карточками
+
 
 const allSelectors = {
   formSelector: '.popup__form',
@@ -70,5 +72,5 @@ const initialCards = [
 
 export { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
           addPlaceButton, closeButtonProfile, closeButtonAddPlace, closeButtonImageXl, popupEditProfile, popupAddPlace,
-          popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards }
+          popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards, elements }
 

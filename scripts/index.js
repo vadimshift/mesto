@@ -3,7 +3,7 @@ import { FormValidator } from './FormValidator.js'
 import { profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
          newProfileAbout, addPlaceButton, closeButtonProfile, closeButtonAddPlace,
         closeButtonImageXl, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
-        addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName } from './constants.js'
+        addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements } from './constants.js'
 
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
@@ -61,7 +61,7 @@ function hendleFormSubmit(evt) {
 function renderCards(item) {
   const card = new Card(item, '.template-place', handleCardClick);
 	const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  elements.prepend(cardElement);
 }
 
 //функция рендер карточки для массива

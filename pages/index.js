@@ -1,4 +1,5 @@
 import { Card } from '../components/Card.js'
+import { Section } from '../components/Section.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
@@ -11,6 +12,19 @@ const openPopupEditProfile = () => {
   profileEnterName.value = newProfileName.textContent
   profileEnterAbout.value = newProfileAbout.textContent
 }
+
+//Создаем экземпляр класса Section
+const renderCards2 = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '.template-place', handleCardClick);
+    const cardElement = card.generateCard();
+    elements.prepend(cardElement);
+  }
+},
+'elements');
+
+
 
 //функция открытия попапа
 export function openPopup(popupElement) {
@@ -64,19 +78,20 @@ function hendleFormSubmit(evt) {
 
   closePopup(popupEditProfile)
 }
-
+/*
 //функция рендер карточки
 function renderCards(item) {
   const card = new Card(item, '.template-place', handleCardClick);
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
 }
-
+*/
+/*
 //функция рендер карточки для массива
 function render() {
   initialCards.forEach(renderCards);
 }
-
+*/
 //функция добавления новой карточки места
 function hendleAddPlace(evt) {
   evt.preventDefault();
@@ -96,4 +111,6 @@ addPlaceForm.addEventListener('submit', hendleAddPlace)
 profileEditButton.addEventListener('click', () => { openPopup(popupEditProfile); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
 
-render()
+renderCards2.renderItems()
+
+

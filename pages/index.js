@@ -1,10 +1,10 @@
-import { Card } from './Card.js'
+import { Card } from '../components/Card.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
-} from './constants.js'
+} from '../utils/constants.js'
 
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {

@@ -1,4 +1,4 @@
-import { FormValidator } from './FormValidator.js'
+import { FormValidator } from '../components/FormValidator.js'
 
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля

@@ -1,5 +1,6 @@
 import { Card } from '../components/Card.js'
 import { Section } from '../components/Section.js'
+import { Popup } from '../components/Popup.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
@@ -14,7 +15,7 @@ const openPopupEditProfile = () => {
 }
 
 //Создаем экземпляр класса Section
-const renderCards2 = new Section({
+const renderCards = new Section({
   items: initialCards,
   renderer: (item) => {
     const card = new Card(item, '.template-place', handleCardClick);
@@ -24,8 +25,10 @@ const renderCards2 = new Section({
 },
 'elements');
 
+const popupPlace = new Popup('.popup_type_add-place')
+const popupProfile = new Popup('.popup_type_edit-profile')
 
-
+/*
 //функция открытия попапа
 export function openPopup(popupElement) {
   popupElement.classList.add('popup_active')
@@ -37,7 +40,8 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupKeybord);
 };
-
+*/
+/*
 //закрытие попапа по клику на оверлей
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -49,7 +53,7 @@ popups.forEach((popup) => {
     }
   })
 })
-
+*/
 
 //открытие попапа с большой картинкой
 export function handleCardClick(name, link) {
@@ -57,13 +61,14 @@ export function handleCardClick(name, link) {
   imageXlName.textContent = name
   openPopup(popupImageXl)
 }
-
+/*
 //функция закрытия попапа нажатием на клавишу Esc
 function closePopupKeybord(evt) {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_active'));
   }
 }
+*/
 
 //функция редактирования профиля
 function hendleFormSubmit(evt) {
@@ -98,7 +103,7 @@ function hendleAddPlace(evt) {
   const data = {}
   data.name = inputPlaceName.value
   data.link = inputPlaceLink.value
-  renderCards(data)
+  //renderCards(data)
   addPlaceForm.reset()
   closePopup(popupAddPlace)
 }
@@ -109,8 +114,11 @@ profileForm.addEventListener('submit', hendleFormSubmit)
 addPlaceForm.addEventListener('submit', hendleAddPlace)
 
 profileEditButton.addEventListener('click', () => { openPopup(popupEditProfile); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
+//addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
+addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); })
 
-renderCards2.renderItems()
+
+
+renderCards.renderItems()
 
 

@@ -1,6 +1,7 @@
 import { Card } from '../components/Card.js'
 import { Section } from '../components/Section.js'
 import { Popup } from '../components/Popup.js'
+import { PopupWithImage } from '../components/PopupWithImage.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
@@ -27,6 +28,23 @@ const renderCards = new Section({
 
 const popupPlace = new Popup('.popup_type_add-place')
 const popupProfile = new Popup('.popup_type_edit-profile')
+
+const popupWithImageXl = new PopupWithImage(imageXlLink.src, imageXlName.textContent, '.popup_type_image-xl')
+
+
+export function handleCardClick(name, link) {
+  imageXlLink.src = link;
+  imageXlName.textContent = name;
+  popupWithImageXl.open(name, link)
+}
+
+/*
+//открытие попапа с большой картинкой
+export function handleCardClick(name, link) {
+  imageXlLink.src = link
+  imageXlName.textContent = name
+  openPopup(popupImageXl)
+}*/
 
 /*
 //функция открытия попапа
@@ -55,12 +73,6 @@ popups.forEach((popup) => {
 })
 */
 
-//открытие попапа с большой картинкой
-export function handleCardClick(name, link) {
-  imageXlLink.src = link
-  imageXlName.textContent = name
-  openPopup(popupImageXl)
-}
 /*
 //функция закрытия попапа нажатием на клавишу Esc
 function closePopupKeybord(evt) {
@@ -104,8 +116,9 @@ function hendleAddPlace(evt) {
   data.name = inputPlaceName.value
   data.link = inputPlaceLink.value
   //renderCards(data)
+  renderCards.addItem(data)
   addPlaceForm.reset()
-  closePopup(popupAddPlace)
+  popupPlace.close()
 }
 
 // Прикрепляем обработчик к форме:

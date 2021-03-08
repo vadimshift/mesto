@@ -9,7 +9,7 @@ export class PopupWithForm extends Popup {
     this._inputValue = Array.from(document.querySelectorAll('.popup__enter').value)
   }
   setEventListeners() {
-    this._popup.addEventListener('submit', this._formSubmit)
+    this._popup.addEventListener('submit', () => {this._formSubmit})
   }
   close() {
     this._popup.reset();

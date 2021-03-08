@@ -5,9 +5,8 @@ export class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  addItem() {
-    this._container.append(element);
-    //console.log('hello')
+  addItem(data) {
+    this._container.prepend(data);
   }
 
   renderItems() {

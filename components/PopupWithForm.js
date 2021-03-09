@@ -19,7 +19,6 @@ export class PopupWithForm extends Popup {
     this._popup.addEventListener('submit', (event) => {
       event.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      //this._popup.querySelector('.popup__form').reset();
       this.close()
 
     })
@@ -28,7 +27,6 @@ export class PopupWithForm extends Popup {
   close() {
     super.close()
     this._popup.querySelector('.popup__form').reset();
-    //this._popup.reset();
   }
 }
 

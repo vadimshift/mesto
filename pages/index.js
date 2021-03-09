@@ -29,7 +29,6 @@ const renderCards = new Section({
   '.elements');
 
 const formAddPlace = new PopupWithForm({
-  formSelector: '.popup__form_type_add-place',
   handleFormSubmit: (formData) => {
     const card = new Card(formData, '.template-place', handleCardClick);
     const cardElement = card.generateCard();
@@ -92,7 +91,7 @@ function closePopupKeybord(evt) {
   }
 }
 */
-
+/*
 //функция редактирования профиля
 export function hendleFormSubmit(evt) {
   evt.preventDefault();
@@ -105,7 +104,7 @@ export function hendleFormSubmit(evt) {
   newProfileAbout.textContent = editAbout
 
   popupProfile.close()
-}
+}*/
 
 /*
 //функция рендер карточки
@@ -139,7 +138,7 @@ function hendleAddPlace(evt) {
 //addPlaceForm.addEventListener('submit', () => {formAddPlace.setEventListeners();})
 //addPlaceForm.addEventListener('submit', hendleAddPlace)
 
-formAddPlace.setEventListeners();
+
 
 profileEditButton.addEventListener('click', () => { popupProfile.open(); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 //addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
@@ -148,5 +147,5 @@ addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm
 
 
 renderCards.renderItems()
-
+formAddPlace.setEventListeners();
 

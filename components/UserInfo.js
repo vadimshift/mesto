@@ -22,24 +22,3 @@ export class UserInfo {
   }
 }
 
-/*
-//Вставляем информацию со страницы в инпуты формы редактирования профиля
-const openPopupEditProfile = () => {
-  profileEnterName.value = newProfileName.textContent
-  profileEnterAbout.value = newProfileAbout.textContent
-}*/
-
-/*
-//функция редактирования профиля
-export function hendleFormSubmit(evt) {
-  evt.preventDefault();
-  // Получение значение полей из свойства value
-  const editName = profileEnterName.value
-  const editAbout = profileEnterAbout.value
-
-  // Вставка новых значений с помощью textContent
-  newProfileName.textContent = editName
-  newProfileAbout.textContent = editAbout
-
-  popupProfile.close()
-}*/

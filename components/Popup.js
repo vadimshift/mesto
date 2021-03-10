@@ -19,19 +19,18 @@ export class Popup {
         this.close()
       }
     })
-
   }
 
   setEventListeners() {
-    this._popup.addEventListener('click', (event) => {
-      if (event.target.classList.contains('popup_active')) {
-        this.close(event.target)
-      }
-      if (event.target.classList.contains('popup__close-button')) {
-        this.close()
-      }
-    })
-  }
+      this._popup.addEventListener('click', (event) => {
+        if (event.target.classList.contains('popup_active')) {
+          this.close(event.target)
+        }
+        if (event.target.classList.contains('popup__close-button')) {
+          this.close()
+        }
+      })
+    }
 }
 
 

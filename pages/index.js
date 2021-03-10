@@ -3,18 +3,20 @@ import { Section } from '../components/Section.js'
 import { Popup } from '../components/Popup.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
 import { PopupWithForm } from '../components/PopupWithForm.js'
+import { UserInfo } from '../components/UserInfo.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
 } from '../utils/constants.js'
-
+/*
 //Вставляем информацию со страницы в инпуты формы редактирования профиля
 const openPopupEditProfile = () => {
   profileEnterName.value = newProfileName.textContent
   profileEnterAbout.value = newProfileAbout.textContent
 }
+*/
 
 //Создаем экземпляр класса Section
 const renderCards = new Section({
@@ -35,6 +37,17 @@ const formAddPlace = new PopupWithForm({
     renderCards.addItem(cardElement);
   }
 }, '.popup_type_add-place');
+
+const formProfileEdit = new PopupWithForm({
+  handleFormSubmit: () => {
+    userInfo.setUserInfo();
+  }
+}, '.popup_type_edit-profile');
+
+
+const userInfo = new UserInfo('.popup__enter_type_name', '.popup__enter_type_about', '.popup_type_edit-profile', '.profile__title', '.profile__subtitle')
+
+
 
 const popupPlace = new Popup('.popup_type_add-place')
 const popupProfile = new Popup('.popup_type_edit-profile')
@@ -138,14 +151,17 @@ function hendleAddPlace(evt) {
 //addPlaceForm.addEventListener('submit', () => {formAddPlace.setEventListeners();})
 //addPlaceForm.addEventListener('submit', hendleAddPlace)
 
+//userInfo.getUserInfo();setUserInfo()
 
 
-profileEditButton.addEventListener('click', () => { popupProfile.open(); openPopupEditProfile(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
+profileEditButton.addEventListener('click', () => {popupProfile.open(); userInfo.getUserInfo(); /*openPopupEditProfile();*/ validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 //addPlaceButton.addEventListener('click', () => { openPopup(popupAddPlace); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления места
-addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); })
+addPlaceButton.addEventListener('click', () => {popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); })
 
+//profileForm.addEventListener('submit',() => {console.log('123')})
 
 
 renderCards.renderItems()
 formAddPlace.setEventListeners();
+formProfileEdit.setEventListeners();
 

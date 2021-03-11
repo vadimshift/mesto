@@ -76,7 +76,7 @@ const initialCards = [
 
 export {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
-  addPlaceButton, popupEditProfile, popupAddPlace,
+  addPlaceButton, popupEditProfile, popupAddPlace, 
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
   popups

@@ -43,20 +43,15 @@ const userInfo = new UserInfo('.popup__enter_type_name', '.popup__enter_type_abo
 const popupPlace = new Popup('.popup_type_add-place')
 const popupProfile = new Popup('.popup_type_edit-profile')
 
-const popupWithImageXl = new PopupWithImage(imageXlLink.src, imageXlName.textContent, '.popup_type_image-xl')
+const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
 
 
 export function handleCardClick(name, link) {
-  imageXlLink.src = link;
-  imageXlName.textContent = name;
   popupWithImageXl.open(name, link)
 }
 
-
-
 profileEditButton.addEventListener('click', () => { popupProfile.open(); userInfo.getUserInfo(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления карточки с местом
-
 
 renderCards.renderItems() //рендерим массив с карточками
 formAddPlace.setEventListeners(); // сабмит формы добавления маста

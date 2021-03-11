@@ -1,16 +1,15 @@
 import { Popup } from '../components/Popup.js'
 export class PopupWithImage extends Popup {
-  constructor(name, link, popupSelector) {
+  constructor(popupSelector) {
     super(popupSelector);
-    super._popup = document.querySelector(popupSelector);
-    this._link = link;
-    this._name = name;
   }
-  open() {
-    this._link;
-    this._name;
-    this._popup.classList.add('popup_active');
-    document.addEventListener('keydown', super._handleEscClose(), super.setEventListeners())
+
+  open(name, link) {
+    const img = this._popup.querySelector('.popup__image-xl')
+    const title = this._popup.querySelector('.popup__title_type_image-xl')
+    img.src = link
+    title.textContent = name
+    super.open()
   }
 }
 

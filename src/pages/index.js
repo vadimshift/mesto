@@ -1,17 +1,17 @@
-import './index.css'
+import '../pages/index.css'
 
-import { Card } from './components/Card.js'
-import { Section } from './components/Section.js'
-import { Popup } from './components/Popup.js'
-import { PopupWithImage } from './components/PopupWithImage.js'
-import { PopupWithForm } from './components/PopupWithForm.js'
-import { UserInfo } from './components/UserInfo.js'
+import { Card } from '../components/Card.js'
+import { Section } from '../components/Section.js'
+import { Popup } from '../components/Popup.js'
+import { PopupWithImage } from '../components/PopupWithImage.js'
+import { PopupWithForm } from '../components/PopupWithForm.js'
+import { UserInfo } from '../components/UserInfo.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
-} from './utils/constants.js'
+} from '../utils/constants.js'
 
 
 const renderCards = new Section({

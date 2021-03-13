@@ -13,6 +13,12 @@ import {
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
 } from '../utils/constants.js'
 
+//вставляем значения со страницы в форму редактирования профиля
+function getUserInfoForm() {
+  const info = userInfo.getUserInfo()
+  profileEnterName.value = info.name
+  profileEnterAbout.value = info.about
+}
 
 const renderCards = new Section({
   items: initialCards,
@@ -33,14 +39,14 @@ const formAddPlace = new PopupWithForm({
 }, '.popup_type_add-place');
 
 const formProfileEdit = new PopupWithForm({
-  handleFormSubmit: () => {
-    userInfo.setUserInfo();
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
   }
 }, '.popup_type_edit-profile');
 
-
-const userInfo = new UserInfo('.popup__enter_type_name', '.popup__enter_type_about',
-  '.popup_type_edit-profile', '.profile__title', '.profile__subtitle')
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
+/*const userInfo = new UserInfo('.popup__enter_type_name', '.popup__enter_type_about',
+  '.popup_type_edit-profile', '.profile__title', '.profile__subtitle')*/
 
 const popupPlace = new Popup('.popup_type_add-place')
 const popupProfile = new Popup('.popup_type_edit-profile')
@@ -52,7 +58,7 @@ export function handleCardClick(name, link) {
   popupWithImageXl.open(name, link)
 }
 
-profileEditButton.addEventListener('click', () => { popupProfile.open(); userInfo.getUserInfo(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
+profileEditButton.addEventListener('click', () => { popupProfile.open(); getUserInfoForm();/*userInfo.getUserInfo();*/ validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления карточки с местом
 
 renderCards.renderItems() //рендерим массив с карточками

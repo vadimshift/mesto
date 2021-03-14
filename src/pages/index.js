@@ -20,21 +20,22 @@ function getUserInfoForm() {
   profileEnterAbout.value = info.about
 }
 
+function creationCard(item) {
+  const card = new Card(item, '.template-place', handleCardClick);
+  const cardElement = card.generateCard();
+  renderCards.addItem(cardElement)
+}
 const renderCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.template-place', handleCardClick);
-    const cardElement = card.generateCard();
-    renderCards.addItem(cardElement)
+    creationCard(item)
   }
 },
   '.elements');
 
 const formAddPlace = new PopupWithForm({
   handleFormSubmit: (formData) => {
-    const card = new Card(formData, '.template-place', handleCardClick);
-    const cardElement = card.generateCard();
-    renderCards.addItem(cardElement);
+    creationCard(formData)
   }
 }, '.popup_type_add-place');
 

@@ -45,8 +45,6 @@ const formProfileEdit = new PopupWithForm({
 }, '.popup_type_edit-profile');
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
-/*const userInfo = new UserInfo('.popup__enter_type_name', '.popup__enter_type_about',
-  '.popup_type_edit-profile', '.profile__title', '.profile__subtitle')*/
 
 const popupPlace = new Popup('.popup_type_add-place')
 const popupProfile = new Popup('.popup_type_edit-profile')
@@ -58,10 +56,11 @@ export function handleCardClick(name, link) {
   popupWithImageXl.open(name, link)
 }
 
-profileEditButton.addEventListener('click', () => { popupProfile.open(); getUserInfoForm();/*userInfo.getUserInfo();*/ validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
+profileEditButton.addEventListener('click', () => { popupProfile.open(); getUserInfoForm(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
 addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления карточки с местом
 
 renderCards.renderItems() //рендерим массив с карточками
-formAddPlace.setEventListeners(); // сабмит формы добавления маста
-formProfileEdit.setEventListeners(); //сабмит формы редактирования места
+formAddPlace.setEventListeners();
+formProfileEdit.setEventListeners();
+popupWithImageXl.setEventListeners();
 

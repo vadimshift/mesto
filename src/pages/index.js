@@ -47,9 +47,6 @@ const formProfileEdit = new PopupWithForm({
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
 
-const popupPlace = new Popup('.popup_type_add-place')
-const popupProfile = new Popup('.popup_type_edit-profile')
-
 const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
 
 
@@ -57,8 +54,19 @@ export function handleCardClick(name, link) {
   popupWithImageXl.open(name, link)
 }
 
-profileEditButton.addEventListener('click', () => { popupProfile.open(); getUserInfoForm(); validationProfileForm.resetValidation(); }) //открытие формы редактирования профиля
-addPlaceButton.addEventListener('click', () => { popupPlace.open(); addPlaceForm.reset(); validationAddPlaceForm.resetValidation(); }) //открытие формы добавления карточки с местом
+//открытие формы редактирования профиля
+profileEditButton.addEventListener('click', () => {
+  formProfileEdit.open();
+  getUserInfoForm();
+  validationProfileForm.resetValidation();
+})
+
+//открытие формы добавления карточки с местом
+addPlaceButton.addEventListener('click', () => {
+  formAddPlace.open();
+  addPlaceForm.reset();
+  validationAddPlaceForm.resetValidation();
+})
 
 renderCards.renderItems() //рендерим массив с карточками
 formAddPlace.setEventListeners();

@@ -1,10 +1,13 @@
 export class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, api) {
     this._name = data.name;
     this._link = data.link;
-    this._alt = data.alt;
+    //this._alt = data.alt;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._api = api
+    this._data = data
+
 
   }
   _getTemplate() {
@@ -23,7 +26,6 @@ export class Card {
     this._cardImage = this._element.querySelector('.element__image');
     this._cardLikeButton = this._element.querySelector('.element__like-button');
     this._cardDeleteButton = this._element.querySelector('.element__delete-button');
-
     this._cardImage.src = this._link;
     this._cardImage.alt = this._alt;
     this._element.querySelector('.element__text-title').textContent = this._name;

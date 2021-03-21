@@ -24,6 +24,17 @@ function getUserInfoForm() {
   profileEnterAbout.value = info.about
 }
 
+api.getCards()
+  .then(data => {
+    data.forEach(item => {
+      creationCard(item)
+    });
+  })
+  .catch(err => {
+    console.log('Ошибка при загрузке карточек', err.message);
+  });
+
+
 function creationCard(item) {
   const card = new Card(item, '.template-place', handleCardClick);
   const cardElement = card.generateCard();
@@ -73,12 +84,12 @@ addPlaceButton.addEventListener('click', () => {
   validationAddPlaceForm.resetValidation();
 })
 
-renderCards.renderItems() //рендерим массив с карточками
+//renderCards.renderItems() //рендерим массив с карточками
 formAddPlace.setEventListeners();
 formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
-//-------------------
+//-------------------тестим
 addPlaceButton.addEventListener('click', () => {
-  console.log(api.getCards(), api.getUserInfo())
+  console.log(api.getCards(), api.getUserInfo(), initialCards)
 })
 

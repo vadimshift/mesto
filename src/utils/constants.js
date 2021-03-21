@@ -22,6 +22,7 @@ const imageXlName = document.querySelector('.popup__title_type_image-xl') //по
 const elements = document.querySelector('.elements') // контейнер с карточками
 const popups = document.querySelectorAll('.popup')
 
+//Объект со всеми необходимыми классами для валидации форм.
 const allSelectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__enter',
@@ -37,8 +38,14 @@ const enableValidationAddPlaceForm = validationAddPlaceForm.enableValidation(add
 const validationProfileForm = new FormValidator(allSelectors, profileForm)
 const enableValidationProfileForm = validationProfileForm.enableValidation(profileForm)
 
-
-//Объект со всеми необходимыми классами для валидации форм.
+const options = {
+  userUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me',
+  cardsUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/cards',
+  headers: {
+    authorization: '35068309-e434-48d0-a214-95dc9b740ad7',
+    'Content-Type': 'application/json'
+  }
+}
 
 const initialCards = [
   {
@@ -76,9 +83,9 @@ const initialCards = [
 
 export {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName, newProfileAbout,
-  addPlaceButton, popupEditProfile, popupAddPlace, 
+  addPlaceButton, popupEditProfile, popupAddPlace,
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
-  popups
+  popups, options
 }
 

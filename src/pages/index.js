@@ -6,12 +6,16 @@ import { Popup } from '../components/Popup.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
 import { PopupWithForm } from '../components/PopupWithForm.js'
 import { UserInfo } from '../components/UserInfo.js'
+import { Api } from '../components/Api.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
-  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups
+  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options
 } from '../utils/constants.js'
+
+//создали экземпляр api
+const api = new Api(options)
 
 //вставляем значения со страницы в форму редактирования профиля
 function getUserInfoForm() {
@@ -25,6 +29,7 @@ function creationCard(item) {
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
 }
+
 const renderCards = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -72,4 +77,8 @@ renderCards.renderItems() //рендерим массив с карточкам�
 formAddPlace.setEventListeners();
 formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
+//-------------------
+addPlaceButton.addEventListener('click', () => {
+  console.log(api.getCards(), api.getUserInfo())
+})
 

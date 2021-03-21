@@ -20,7 +20,7 @@ export class Api {
       .catch(err => Promise.reject(err));
   }
 
-  getUserInfo() {
+  getProfileInfo() {
     return fetch(this._userUrl, {
       headers: this._headers,
     })

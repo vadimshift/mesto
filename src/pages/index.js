@@ -31,7 +31,17 @@ api.getCards()
     });
   })
   .catch(err => {
-    console.log('Ошибка при загрузке карточек', err.message);
+    console.log('Ошибка', err.message);
+  });
+
+api.getProfileInfo()
+  .then(data => {
+    console.log(data)
+    newProfileName.textContent = data.name
+    newProfileAbout.textContent = data.about
+  })
+  .catch(err => {
+    console.log('Ошибка', err.message);
   });
 
 

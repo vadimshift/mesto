@@ -11,7 +11,7 @@ import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
-  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options
+  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage
 } from '../utils/constants.js'
 
 //создали экземпляр api
@@ -23,7 +23,7 @@ function getUserInfoForm() {
   profileEnterName.value = info.name
   profileEnterAbout.value = info.about
 }
-
+//рендер карточки
 api.getCards()
   .then(data => {
     data.forEach(item => {
@@ -33,12 +33,13 @@ api.getCards()
   .catch(err => {
     console.log('Ошибка', err.message);
   });
-
+//загрузка информации о профиле
 api.getProfileInfo()
   .then(data => {
     console.log(data)
     newProfileName.textContent = data.name
     newProfileAbout.textContent = data.about
+    profileImage.src = data.avatar
   })
   .catch(err => {
     console.log('Ошибка', err.message);

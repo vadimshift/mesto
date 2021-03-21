@@ -6,6 +6,7 @@ const profileEnterName = document.querySelector('.popup__enter_type_name') //п�
 const profileEnterAbout = document.querySelector('.popup__enter_type_about') //поле ввода "о себе" в профиле
 const newProfileName = document.querySelector('.profile__title') //новое имя профиля
 const newProfileAbout = document.querySelector('.profile__subtitle') //новое о себе профиля
+const profileImage = document.querySelector('.profile__avatar') //картинка профиля
 
 const addPlaceButton = document.querySelector('.profile__add-button') //кнопка добавления места
 
@@ -86,6 +87,6 @@ export {
   addPlaceButton, popupEditProfile, popupAddPlace,
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
-  popups, options
+  popups, options, profileImage
 }
 

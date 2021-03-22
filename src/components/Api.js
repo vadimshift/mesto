@@ -38,8 +38,20 @@ export class Api {
       }),
     })
 
-    .then(res => this._parseResponse(res))
-    .catch(err => Promise.reject(err));
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
+  }
+
+  setNewCard(formData) {
+    return fetch(this._cardsUrl, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: formData.name,
+        link: formData.link
+      }),
+    })
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
   }
 }
-

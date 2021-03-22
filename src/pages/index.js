@@ -62,7 +62,10 @@ const renderCards = new Section({
 //добавление карточки чрез форму
 const formAddPlace = new PopupWithForm({
   handleFormSubmit: (formData) => {
+    console.log(formData)
+    api.setNewCard(formData)
     creationCard(formData)
+
   }
 }, '.popup_type_add-place');
 

@@ -26,8 +26,7 @@ function getUserInfoForm() {
 //рендер карточки
 api.getCards()
   .then(data => {
-    console.log(data)
-     data.forEach(item => {
+    data.forEach(item => {
       creationCard(item)
     });
   })

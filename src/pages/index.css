@@ -40,5 +40,6 @@
 @import url(../blocks/popup/__enter/_error/popup__enter_error.css);
 @import url(../blocks/element/__like-container/element__like-container.css);
 @import url(../blocks/element/__like-amount/element__like-amount.css);
-
+@import url(../blocks/popup/__title/_type/popup__title_type_submit-form.css);
+@import url(../blocks/popup/__submit-button/_submit-form/popup__submit-button_submit-form.css);
 

@@ -36,7 +36,6 @@ api.getCards()
 //загрузка информации о профиле
 api.getProfileInfo()
   .then(data => {
-    console.log(data)
     newProfileName.textContent = data.name
     newProfileAbout.textContent = data.about
     profileImage.src = data.avatar
@@ -60,15 +59,19 @@ const renderCards = new Section({
 },
   '.elements');
 
+//добавление карточки чрез форму
 const formAddPlace = new PopupWithForm({
   handleFormSubmit: (formData) => {
     creationCard(formData)
   }
 }, '.popup_type_add-place');
 
+//редактирование профиля через форму
 const formProfileEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
+    console.log(data)
     userInfo.setUserInfo(data);
+    api.setNewProfileInfo(data)
   }
 }, '.popup_type_edit-profile');
 
@@ -101,6 +104,6 @@ formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
 //-------------------тестим
 addPlaceButton.addEventListener('click', () => {
-  console.log(api.getCards(), api.getUserInfo(), initialCards)
+  console.log('hello')
 })
 

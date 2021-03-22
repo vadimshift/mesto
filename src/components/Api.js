@@ -27,4 +27,19 @@ export class Api {
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
+
+  setNewProfileInfo(data) {
+    return fetch(this._userUrl, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      }),
+    })
+
+    .then(res => this._parseResponse(res))
+    .catch(err => Promise.reject(err));
+  }
 }
+

@@ -26,8 +26,9 @@ function getUserInfoForm() {
 //рендер карточки
 api.getCards()
   .then(data => {
+    console.log(data)
      data.forEach(item => {
-      creationCard(item)git
+      creationCard(item)
     });
   })
   .catch(err => {

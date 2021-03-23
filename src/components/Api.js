@@ -48,7 +48,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: formData.name,
-        link: formData.link
+        link: formData.link,
       }),
     })
       .then(res => this._parseResponse(res))

@@ -46,7 +46,7 @@ api.getProfileInfo()
 
 
 function creationCard(item) {
-  const card = new Card(item, '.template-place', handleCardClick);
+  const card = new Card(item, '.template-place', handleCardClick, api);
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
 }
@@ -64,7 +64,7 @@ const formAddPlace = new PopupWithForm({
   handleFormSubmit: (formData) => {
     console.log(formData)
     api.setNewCard(formData)
-    creationCard(formData)
+    //creationCard(formData)
 
   }
 }, '.popup_type_add-place');
@@ -73,7 +73,7 @@ const formAddPlace = new PopupWithForm({
 const formProfileEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
     console.log(data)
-    userInfo.setUserInfo(data);
+    //userInfo.setUserInfo(data);
     api.setNewProfileInfo(data)
   }
 }, '.popup_type_edit-profile');

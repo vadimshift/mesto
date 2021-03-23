@@ -30,7 +30,6 @@ export class Card {
     this._cardLikesAmount.textContent = this._likes;
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
-
     this._setEventListeners();
 
     return this._element;

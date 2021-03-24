@@ -49,6 +49,7 @@ function creationCard(item) {
   const card = new Card(item, '.template-place', handleCardClick, api);
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
+  
 }
 
 const renderCards = new Section({
@@ -109,4 +110,5 @@ popupWithImageXl.setEventListeners();
 addPlaceButton.addEventListener('click', () => {
   console.log('hello')
 })
+
 

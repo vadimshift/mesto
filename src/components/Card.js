@@ -4,13 +4,12 @@ export class Card {
     this._link = data.link;
     this._likes = data.likes.length;
     this._owner = data.owner._id;
-    this._myId = '46a9409ea603dfec2fa8933c'
+    this._myId = '46a9409ea603dfec2fa8933c';
+    this._cardId = data._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._api = api
     this._data = data
-
-
   }
   _getTemplate() {
     // манипуляции с темплейт тегом
@@ -33,7 +32,9 @@ export class Card {
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
     this._setCardDeleteButton();
+    this._deleteCard();
     this._setEventListeners();
+
 
     return this._element;
   }
@@ -41,9 +42,9 @@ export class Card {
     this._cardLikeButton.addEventListener('click', () => {
       this._handleLikeIcon();
     });
-    this._cardDeleteButton.addEventListener('click', () => {
+    /*this._cardDeleteButton.addEventListener('click', () => {
       this._hendleDeleteCard();
-    });
+    });*/
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
@@ -57,6 +58,15 @@ export class Card {
   _setCardDeleteButton() {
     if (this._myId === this._owner) {
       this._cardDeleteButton.classList.toggle('element__delete-button_active')
+
+    }
+  }
+  _deleteCard() {
+    if (this._myId === this._owner) {
+      /*this._cardDeleteButton.addEventListener('click', () => {
+        this._hendleDeleteCard();
+      })*/
+      return console.log(this._cardId)
     }
   }
 }

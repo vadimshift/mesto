@@ -3,6 +3,8 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes.length;
+    this._owner = data.owner._id;
+    this._myId = '46a9409ea603dfec2fa8933c'
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._api = api
@@ -30,6 +32,7 @@ export class Card {
     this._cardLikesAmount.textContent = this._likes;
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
+    this._setCardDeleteButton();
     this._setEventListeners();
 
     return this._element;
@@ -50,6 +53,11 @@ export class Card {
   }
   _hendleDeleteCard() {
     this._cardDeleteButton.closest('.element').remove();
+  }
+  _setCardDeleteButton() {
+    if (this._myId === this._owner) {
+      this._cardDeleteButton.classList.toggle('element__delete-button_active')
+    }
   }
 }
 

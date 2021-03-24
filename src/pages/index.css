@@ -42,4 +42,5 @@
 @import url(../blocks/element/__like-amount/element__like-amount.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_submit-form.css);
 @import url(../blocks/popup/__submit-button/_submit-form/popup__submit-button_submit-form.css);
+@import url(../blocks/element/__delete-button/_active/element__delete-button_active.css);
 

@@ -12,6 +12,7 @@
     background: transparent;
     cursor: pointer;
     outline: none;
+    display: none;
   }
 
   .element__delete-button:hover {

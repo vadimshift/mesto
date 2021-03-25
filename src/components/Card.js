@@ -1,11 +1,13 @@
 export class Card {
-  constructor(data, cardSelector, handleCardClick, api) {
+  constructor({ data, handleCardClick, handleLikeClick, handleDeleteIconClick }, cardSelector, api) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes.length;
     this._owner = data.owner._id;
     this._myId = '46a9409ea603dfec2fa8933c';
     this._cardId = data._id;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteIconClick = handleDeleteIconClick;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._api = api
@@ -32,7 +34,7 @@ export class Card {
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
     this._setCardDeleteButton();
-    this._deleteCard();
+    //console.log(this._deleteCard());
     this._setEventListeners();
 
 
@@ -42,9 +44,9 @@ export class Card {
     this._cardLikeButton.addEventListener('click', () => {
       this._handleLikeIcon();
     });
-    /*this._cardDeleteButton.addEventListener('click', () => {
-      this._hendleDeleteCard();
-    });*/
+    this._cardDeleteButton.addEventListener('click', () => {
+      this._hendleDeleteCard(), this._handleDeleteIconClick()
+    });
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
@@ -54,6 +56,7 @@ export class Card {
   }
   _hendleDeleteCard() {
     this._cardDeleteButton.closest('.element').remove();
+    //this._handleDeleteIconClick
   }
   _setCardDeleteButton() {
     if (this._myId === this._owner) {
@@ -61,13 +64,12 @@ export class Card {
 
     }
   }
-  _deleteCard() {
+  getMyCardId() {
     if (this._myId === this._owner) {
       /*this._cardDeleteButton.addEventListener('click', () => {
         this._hendleDeleteCard();
       })*/
-      return console.log(this._cardId)
+      return this._cardId
     }
   }
 }
-

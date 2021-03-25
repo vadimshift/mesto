@@ -54,4 +54,14 @@ export class Api {
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
+
+  delCard(id) {
+    return fetch(`${this._cardsUrl}/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(res => this._parseResponse(res))
+    .catch(err => Promise.reject(err));
+  }
+
 }

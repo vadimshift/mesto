@@ -7,6 +7,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js'
 import { PopupWithForm } from '../components/PopupWithForm.js'
 import { UserInfo } from '../components/UserInfo.js'
 import { Api } from '../components/Api.js'
+import { PopupWithSubmit } from '../components/PopupWithSubmit.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
@@ -46,14 +47,28 @@ api.getProfileInfo()
 
 
 function creationCard(item) {
-  const card = new Card(item, '.template-place', handleCardClick, api);
+  //console.log('creationCard')
+  //const card = new Card(item, '.template-place', handleCardClick, api);
+
+  const card = new Card ({
+    data: item,
+    handleCardClick: (name, link) => {
+      popupWithImageXl.open(name, link)
+    },
+    handleLikeClick: (card) => {
+      console.log(card)},
+
+    handleDeleteIconClick: (card) => {
+      api.delCard(card.getMyCardId())}},
+    '.template-place', api);
+
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
-  
+
 }
 
 const renderCards = new Section({
-  items: initialCards,
+  //items: initialCards,
   renderer: (item) => {
     creationCard(item)
   }
@@ -66,7 +81,6 @@ const formAddPlace = new PopupWithForm({
     console.log(formData)
     api.setNewCard(formData)
     //creationCard(formData)
-
   }
 }, '.popup_type_add-place');
 
@@ -74,7 +88,7 @@ const formAddPlace = new PopupWithForm({
 const formProfileEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
     console.log(data)
-    //userInfo.setUserInfo(data);
+    userInfo.setUserInfo(data);
     api.setNewProfileInfo(data)
   }
 }, '.popup_type_edit-profile');
@@ -83,11 +97,11 @@ const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
 
 const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
 
-
+/*
 export function handleCardClick(name, link) {
   popupWithImageXl.open(name, link)
 }
-
+*/
 //открытие формы редактирования профиля
 profileEditButton.addEventListener('click', () => {
   formProfileEdit.open();
@@ -110,5 +124,6 @@ popupWithImageXl.setEventListeners();
 addPlaceButton.addEventListener('click', () => {
   console.log('hello')
 })
+
 
 

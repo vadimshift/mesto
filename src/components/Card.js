@@ -34,7 +34,6 @@ export class Card {
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
     this._setCardDeleteButton();
-    //console.log(this._deleteCard());
     this._setEventListeners();
 
 
@@ -45,7 +44,7 @@ export class Card {
       this._handleLikeIcon();
     });
     this._cardDeleteButton.addEventListener('click', () => {
-      this._hendleDeleteCard(), this._handleDeleteIconClick()
+      this._hendleDeleteCard()
     });
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
@@ -53,10 +52,12 @@ export class Card {
   }
   _handleLikeIcon() {
     this._cardLikeButton.classList.toggle('element__like-button_active');
+    this._handleLikeClick()
   }
   _hendleDeleteCard() {
     this._cardDeleteButton.closest('.element').remove();
-    //this._handleDeleteIconClick
+    this._handleDeleteIconClick()
+    //console.log(this.getMyCardId())
   }
   _setCardDeleteButton() {
     if (this._myId === this._owner) {

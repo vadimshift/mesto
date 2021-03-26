@@ -57,11 +57,15 @@ function creationCard(item) {
       popupWithImageXl.open(name, link)
     },
     handleLikeClick: (card) => {
-      console.log(card)},
+      console.log('like')
+    },
 
     handleDeleteIconClick: (card) => {
-      api.delCard(card.getMyCardId())}},
+      console.log('delete')
+    }
+    },
     '.template-place', api);
+
 
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)

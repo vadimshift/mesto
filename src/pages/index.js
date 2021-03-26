@@ -21,8 +21,9 @@ const api = new Api(options)
 
 const popupWithSubmit = new PopupWithSubmit({
   handleFormSubmit: () => {
-    //api.delCard(card.getMyCardId())
-    console.log('submit')
+    //card.deleteCard()
+    //popupWithSubmit.setSubmitAction()
+   // console.log('submit')
   }
 },
   '.popup_type_submit-form');
@@ -70,8 +71,15 @@ function creationCard(item) {
     },
 
     handleDeleteIconClick: () => {
-      popupWithSubmit.open()
+      popupWithSubmit.open() //открываю сабмит попап
+      popupWithSubmit.setSubmitAction(card.deleteCard())
       //api.delCard(card.getMyCardId())
+      //popupWithSubmit.setSubmitAction(api.delCard(card.getMyCardId())) //обработка после нажатия на кнопку "да"
+      //card.deleteCard()
+
+      //api.delCard(card.getMyCardId())
+      //card.deleteCard() //удаляю из дом
+
     }
   },
     '.template-place', api);

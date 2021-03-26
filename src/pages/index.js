@@ -24,9 +24,9 @@ function getUserInfoForm() {
   profileEnterName.value = info.name
   profileEnterAbout.value = info.about
 }
-//рендер карточки
+//рендерим карточки, полученные с сервера
 api.getCards()
-  .then(data => {
+    .then(data => {
     data.forEach(item => {
       creationCard(item)
     });
@@ -34,9 +34,10 @@ api.getCards()
   .catch(err => {
     console.log('Ошибка', err.message);
   });
-//загрузка информации о профиле
+
+//загрузка информации о профиле с сервера
 api.getProfileInfo()
-  .then(data => {
+   .then(data => {
     newProfileName.textContent = data.name
     newProfileAbout.textContent = data.about
     profileImage.src = data.avatar
@@ -45,7 +46,7 @@ api.getProfileInfo()
     console.log('Ошибка', err.message);
   });
 
-
+//создаем карточку
 function creationCard(item) {
   //console.log('creationCard')
   //const card = new Card(item, '.template-place', handleCardClick, api);
@@ -67,31 +68,39 @@ function creationCard(item) {
 
 }
 
+//вставляем карточку в разметку
 const renderCards = new Section({
-  //items: initialCards,
   renderer: (item) => {
     creationCard(item)
   }
 },
   '.elements');
 
-//добавление карточки чрез форму
+//добавление новой карточки через форму
 const formAddPlace = new PopupWithForm({
-  handleFormSubmit: (formData) => {
-    console.log(formData)
-    api.setNewCard(formData)
-    //creationCard(formData)
+  handleFormSubmit: (data) => {
+    api.setNewCard(data)
+      .then(data => {
+        creationCard(data)
+      })
+    .catch(err => {
+        console.log('Ошибка', err.message);
+    });
   }
 }, '.popup_type_add-place');
 
 //редактирование профиля через форму
 const formProfileEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
-    console.log(data)
-    userInfo.setUserInfo(data);
     api.setNewProfileInfo(data)
+      .then(data => {
+        userInfo.setUserInfo(data)
+      })
+      .catch(err => {
+        console.log('Ошибка', err.message)
+      })
   }
-}, '.popup_type_edit-profile');
+}, '.popup_type_edit-profile')
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
 

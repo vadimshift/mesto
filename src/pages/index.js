@@ -143,6 +143,7 @@ addPlaceButton.addEventListener('click', () => {
 formAddPlace.setEventListeners();
 formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
+popupWithSubmit.setEventListeners();
 //-------------------тестим
 addPlaceButton.addEventListener('click', () => {
   console.log('hello')

@@ -5,9 +5,10 @@ import { Section } from '../components/Section.js'
 import { Popup } from '../components/Popup.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
 import { PopupWithForm } from '../components/PopupWithForm.js'
+import { PopupWithSubmit } from '../components/PopupWithSubmit.js'
 import { UserInfo } from '../components/UserInfo.js'
 import { Api } from '../components/Api.js'
-import { PopupWithSubmit } from '../components/PopupWithSubmit.js'
+
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
@@ -17,6 +18,14 @@ import {
 
 //создали экземпляр api
 const api = new Api(options)
+
+const popupWithSubmit = new PopupWithSubmit({
+  handleFormSubmit: () => {
+    //api.delCard(card.getMyCardId())
+    console.log('submit')
+  }
+},
+  '.popup_type_submit-form');
 
 //вставляем значения со страницы в форму редактирования профиля
 function getUserInfoForm() {
@@ -61,14 +70,8 @@ function creationCard(item) {
     },
 
     handleDeleteIconClick: () => {
-      /*const popupWithSubmit = new PopupWithSubmit({
-        handleFormSubmit: (item) => {
-          api.delCard(card.getMyCardId())
-        }
-      },
-        '.popup_type_submit-form');
-      popupWithSubmit.open()*/
-      api.delCard(card.getMyCardId())
+      popupWithSubmit.open()
+      //api.delCard(card.getMyCardId())
     }
   },
     '.template-place', api);

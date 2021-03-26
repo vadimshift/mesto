@@ -26,7 +26,7 @@ function getUserInfoForm() {
 }
 //рендерим карточки, полученные с сервера
 api.getCards()
-    .then(data => {
+  .then(data => {
     data.forEach(item => {
       creationCard(item)
     });
@@ -37,7 +37,7 @@ api.getCards()
 
 //загрузка информации о профиле с сервера
 api.getProfileInfo()
-   .then(data => {
+  .then(data => {
     newProfileName.textContent = data.name
     newProfileAbout.textContent = data.about
     profileImage.src = data.avatar
@@ -51,19 +51,26 @@ function creationCard(item) {
   //console.log('creationCard')
   //const card = new Card(item, '.template-place', handleCardClick, api);
 
-  const card = new Card ({
+  const card = new Card({
     data: item,
     handleCardClick: (name, link) => {
       popupWithImageXl.open(name, link)
     },
-    handleLikeClick: (card) => {
+    handleLikeClick: (item) => {
       console.log('like')
     },
 
-    handleDeleteIconClick: (card) => {
-      console.log('delete')
+    handleDeleteIconClick: () => {
+      /*const popupWithSubmit = new PopupWithSubmit({
+        handleFormSubmit: (item) => {
+          api.delCard(card.getMyCardId())
+        }
+      },
+        '.popup_type_submit-form');
+      popupWithSubmit.open()*/
+      api.delCard(card.getMyCardId())
     }
-    },
+  },
     '.template-place', api);
 
 
@@ -87,9 +94,9 @@ const formAddPlace = new PopupWithForm({
       .then(data => {
         creationCard(data)
       })
-    .catch(err => {
+      .catch(err => {
         console.log('Ошибка', err.message);
-    });
+      });
   }
 }, '.popup_type_add-place');
 

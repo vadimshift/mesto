@@ -35,8 +35,7 @@ export class Card {
     this._element.querySelector('.element__text-title').textContent = this._name;
     this._setCardDeleteButton();
     this._setEventListeners();
-
-
+    
     return this._element;
   }
   _setEventListeners() {

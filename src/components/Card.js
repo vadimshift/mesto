@@ -50,10 +50,13 @@ export class Card {
       this._handleCardClick(this._name, this._link);
     });
   }
+
   _handleLikeIcon() {
     this._cardLikeButton.classList.toggle('element__like-button_active');
-    this._handleLikeClick()
+    //this._handleLikeClick()
+    //this._api.delLikeCard(this.getMyCardId())
   }
+
   deleteCard() {
     this._api.delCard(this.getMyCardId())
       .then(() => {
@@ -62,14 +65,14 @@ export class Card {
       .catch(err => {
         console.log('Ошибка', err.message);
       });
-    //this._cardDeleteButton.closest('.element').remove();
   }
+
   _setCardDeleteButton() {
     if (this._myId === this._owner) {
       this._cardDeleteButton.classList.toggle('element__delete-button_active')
-
     }
   }
+
   getMyCardId() {
     if (this._myId === this._owner) {
       return this._cardId

@@ -2,6 +2,7 @@ export class Api {
   constructor(options) {
     this._userUrl = options.userUrl
     this._cardsUrl = options.cardsUrl
+    this._cardsUrlLike = options.cardsUrlLike
     this._headers = options.headers
   }
 
@@ -57,6 +58,24 @@ export class Api {
 
   delCard(id) {
     return fetch(`${this._cardsUrl}/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(res => this._parseResponse(res))
+    .catch(err => Promise.reject(err));
+  }
+
+  setLikeCard(id) {
+    return fetch(`${this._cardsUrlLike}/${id}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+    .then(res => this._parseResponse(res))
+    .catch(err => Promise.reject(err));
+  }
+
+  delLikeCard(id) {
+    return fetch(`${this._cardsUrlLike}/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })

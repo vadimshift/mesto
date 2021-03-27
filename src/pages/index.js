@@ -14,7 +14,8 @@ import {
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage,
-  popupChangeAvatar, validationChangeAvatarForm
+  popupChangeAvatar, validationChangeAvatarForm, profileAvatarEditButton, enableValidationChangeAvatarForm,
+  changeAvatarForm
 } from '../utils/constants.js'
 
 //создали экземпляр api
@@ -76,7 +77,6 @@ function creationCard(item) {
   },
     '.template-place', api);
 
-
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
 
@@ -116,7 +116,7 @@ const formProfileEdit = new PopupWithForm({
   }
 }, '.popup_type_edit-profile')
 
-
+//обновление аватара через форму
 const formProfileAvatarEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
     api.setNewAvatar(data)
@@ -134,6 +134,13 @@ const formProfileAvatarEdit = new PopupWithForm({
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar')
 
 const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
+
+//открытие формы обновления аватара
+profileAvatarEditButton.addEventListener('click', () => {
+   formProfileAvatarEdit.open();
+   changeAvatarForm.reset();
+   validationChangeAvatarForm.resetValidation();
+})
 
 
 //открытие формы редактирования профиля

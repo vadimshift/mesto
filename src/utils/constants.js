@@ -1,6 +1,7 @@
 import { FormValidator } from '../components/FormValidator.js'
 
 const profileEditButton = document.querySelector('.profile__edit-button') //кнопка редактирования профиля
+const profileAvatarEditButton = document.querySelector('.profile__avatar-edit-button') //кнопка редактирования аватара профиля
 const profileForm = document.querySelector('.popup__form_type_edit-profile') //форма редактирования профиля
 const profileEnterName = document.querySelector('.popup__enter_type_name') //поле ввода имени профиля
 const profileEnterAbout = document.querySelector('.popup__enter_type_about') //поле ввода "о себе" в профиле
@@ -94,6 +95,7 @@ export {
   addPlaceButton, popupEditProfile, popupAddPlace,
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
-  popups, options, profileImage, enableValidationChangeAvatarForm, popupChangeAvatar
+  popups, options, profileImage, enableValidationChangeAvatarForm, popupChangeAvatar, profileAvatarEditButton,
+  validationChangeAvatarForm, changeAvatarForm
 }
 

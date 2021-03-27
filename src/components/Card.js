@@ -53,7 +53,7 @@ export class Card {
 
   _handleLikeIcon() {
     this._cardLikeButton.classList.toggle('element__like-button_active');
-    //this._handleLikeClick()
+    this._handleLikeClick()
     //this._api.delLikeCard(this.getMyCardId())
   }
 

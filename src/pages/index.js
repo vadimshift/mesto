@@ -63,8 +63,8 @@ function creationCard(item) {
     handleCardClick: (name, link) => {
       popupWithImageXl.open(name, link)
     },
-    handleLikeClick: (item) => {
-      console.log('like')
+    handleLikeClick: () => {
+      //api.setLikeCard(card.getMyCardId())
     },
 
     handleDeleteIconClick: () => {

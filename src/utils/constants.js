@@ -13,6 +13,7 @@ const addPlaceButton = document.querySelector('.profile__add-button') //кноп
 const popupEditProfile = document.querySelector('.popup_type_edit-profile') // попап редактирования профиля
 const popupAddPlace = document.querySelector('.popup_type_add-place') // попап добавления места
 const popupImageXl = document.querySelector('.popup_type_image-xl') // попап разворота фотографии места на весь экран
+const popupChangeAvatar = document.querySelector('.popup_type_change-avatar') //попап замены аватара профиля
 
 const inputPlaceName = document.querySelector('.popup__enter_type_name-place') //инпут добавления ссылки на изображение места
 const inputPlaceLink = document.querySelector('.popup__enter_type_link-image') //инпут добавления названия места
@@ -45,6 +46,7 @@ const enableValidationChangeAvatarForm = validationChangeAvatarForm.enableValida
 
 const options = {
   userUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me',
+  userAvatar: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar',
   cardsUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/cards',
   cardsUrlLike: 'https://mesto.nomoreparties.co/v1/cohort-21/cards/likes',
   headers: {
@@ -92,6 +94,6 @@ export {
   addPlaceButton, popupEditProfile, popupAddPlace,
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
-  popups, options, profileImage, enableValidationChangeAvatarForm
+  popups, options, profileImage, enableValidationChangeAvatarForm, popupChangeAvatar
 }
 

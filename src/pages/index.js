@@ -13,7 +13,8 @@ import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
-  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage
+  enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage,
+  popupChangeAvatar, validationChangeAvatarForm
 } from '../utils/constants.js'
 
 //создали экземпляр api
@@ -23,7 +24,7 @@ const popupWithSubmit = new PopupWithSubmit({
   handleFormSubmit: () => {
     //card.deleteCard()
     //popupWithSubmit.setSubmitAction()
-   console.log('submit')
+    console.log('submit')
   },
 },
   '.popup_type_submit-form');
@@ -58,7 +59,7 @@ api.getProfileInfo()
 
 //создаем карточку
 function creationCard(item) {
-    const card = new Card({
+  const card = new Card({
     data: item,
     handleCardClick: (name, link) => {
       popupWithImageXl.open(name, link)
@@ -115,15 +116,26 @@ const formProfileEdit = new PopupWithForm({
   }
 }, '.popup_type_edit-profile')
 
-const userInfo = new UserInfo('.profile__title', '.profile__subtitle')
+
+const formProfileAvatarEdit = new PopupWithForm({
+  handleFormSubmit: (data) => {
+    api.setNewAvatar(data)
+      .then(data => {
+        userInfo.setUserAvatar(data)
+      })
+      .catch(err => {
+        console.log('Ошибка', err.message)
+      })
+  }
+}, '.popup_type_change-avatar')
+
+
+
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar')
 
 const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
 
-/*
-export function handleCardClick(name, link) {
-  popupWithImageXl.open(name, link)
-}
-*/
+
 //открытие формы редактирования профиля
 profileEditButton.addEventListener('click', () => {
   formProfileEdit.open();
@@ -138,15 +150,13 @@ addPlaceButton.addEventListener('click', () => {
   validationAddPlaceForm.resetValidation();
 })
 
-//renderCards.renderItems() //рендерим массив с карточками
+
 formAddPlace.setEventListeners();
 formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
 popupWithSubmit.setEventListeners();
-//-------------------тестим
-addPlaceButton.addEventListener('click', () => {
-  console.log('hello')
-})
+formProfileAvatarEdit.setEventListeners();
+
 
 
 

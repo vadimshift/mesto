@@ -3,7 +3,9 @@ export class Api {
     this._userUrl = options.userUrl
     this._cardsUrl = options.cardsUrl
     this._cardsUrlLike = options.cardsUrlLike
+    this._userAvatar = options.userAvatar
     this._headers = options.headers
+
   }
 
   _parseResponse(res) {
@@ -61,8 +63,8 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => this._parseResponse(res))
-    .catch(err => Promise.reject(err));
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
   }
 
   setLikeCard(id) {
@@ -70,8 +72,8 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => this._parseResponse(res))
-    .catch(err => Promise.reject(err));
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
   }
 
   delLikeCard(id) {
@@ -79,8 +81,20 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => this._parseResponse(res))
-    .catch(err => Promise.reject(err));
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
+  }
+
+  setNewAvatar(data) {
+    return fetch(this._userAvatar, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.link
+      }),
+    })
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
   }
 
 }

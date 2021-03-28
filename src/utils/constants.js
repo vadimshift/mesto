@@ -25,6 +25,7 @@ const imageXlLink = document.querySelector('.popup__image-xl') //ссылка н
 const imageXlName = document.querySelector('.popup__title_type_image-xl') //подпись к картинке
 const elements = document.querySelector('.elements') // контейнер с карточками
 const popups = document.querySelectorAll('.popup')
+const submitDeleteButton = document.querySelector('.popup__submit-button') // кнопка подтверждения удаления
 
 //Объект со всеми необходимыми классами для валидации форм.
 const allSelectors = {
@@ -96,6 +97,6 @@ export {
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
   popups, options, profileImage, enableValidationChangeAvatarForm, popupChangeAvatar, profileAvatarEditButton,
-  validationChangeAvatarForm, changeAvatarForm
+  validationChangeAvatarForm, changeAvatarForm, submitDeleteButton
 }
 

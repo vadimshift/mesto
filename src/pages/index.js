@@ -15,20 +15,13 @@ import {
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage,
   popupChangeAvatar, validationChangeAvatarForm, profileAvatarEditButton, enableValidationChangeAvatarForm,
-  changeAvatarForm
+  changeAvatarForm, submitDeleteButton
 } from '../utils/constants.js'
 
 //создали экземпляр api
 const api = new Api(options)
 
-const popupWithSubmit = new PopupWithSubmit({
-  handleFormSubmit: () => {
-    //card.deleteCard()
-    //popupWithSubmit.setSubmitAction()
-    console.log('submit')
-  },
-},
-  '.popup_type_submit-form');
+const popupWithSubmit = new PopupWithSubmit('.popup_type_submit-form');
 
 //вставляем значения со страницы в форму редактирования профиля
 function getUserInfoForm() {
@@ -65,14 +58,37 @@ function creationCard(item) {
     handleCardClick: (name, link) => {
       popupWithImageXl.open(name, link)
     },
-    handleLikeClick: () => {
-      //api.setLikeCard(card.getMyCardId())
+    handleLikeClick: (isLiked) => {
+      if (!isLiked) {
+        api.setLikeCard(card.getCardId())
+          .then((data) => {
+            card.hedlelikeCard(data);
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message)
+          })
+      } else if (isLiked) {
+        api.delLikeCard(card.getCardId())
+          .then((data) => {
+            card.hedlelikeCard(data);
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message)
+          })
+      }
+
     },
 
     handleDeleteIconClick: () => {
       popupWithSubmit.open() //открываю сабмит попап
-      popupWithSubmit.setSubmitAction()
-      card.deleteCard()
+
+      //submitDeleteButton.addEventListener('click', () => {
+      // popupWithSubmit.setSubmitAction()
+      //card.deleteCard()
+      console.log(card.getMyCardId())
+      //})
+      //popupWithSubmit.setSubmitAction()
+
     }
   },
     '.template-place', api);
@@ -137,9 +153,9 @@ const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')
 
 //открытие формы обновления аватара
 profileAvatarEditButton.addEventListener('click', () => {
-   formProfileAvatarEdit.open();
-   changeAvatarForm.reset();
-   validationChangeAvatarForm.resetValidation();
+  formProfileAvatarEdit.open();
+  changeAvatarForm.reset();
+  validationChangeAvatarForm.resetValidation();
 })
 
 

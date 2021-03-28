@@ -1,16 +1,23 @@
 import { Popup } from '../components/Popup.js'
 export class PopupWithSubmit extends Popup {
-  constructor({ handleFormSubmit }, popupSelector) {
+  constructor(popupSelector) {
     super(popupSelector);
     this._submitButton = this._popup.querySelector('.popup__submit-button')
-    this._handleFormSubmit = handleFormSubmit;
-    }
 
-  setSubmitAction() {
-    this._submitButton.addEventListener('click', () => {
-      //this._handleFormSubmit()
-    this.close()
-    })
+    //this._handleFormSubmit = handleFormSubmit;
+  }
+
+  handleFormSubmit() {
 
   }
+
+  setEventListeners() {
+    super.setEventListeners()
+    this._submitButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.handleFormSubmit();
+      this.close()
+    })
+  }
+
 }

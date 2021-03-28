@@ -33,7 +33,7 @@ export class Card {
     this._cardLikesAmount.textContent = this._likes.length;
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
-    //проверяем карточки, которые я лайкнуд
+    //проверяем карточки, которые я лайкнул
     this._likes.some(data => {
       if (data._id === this._myId) {
         this._cardLikeButton.classList.add('element__like-button_active');
@@ -51,7 +51,6 @@ export class Card {
     });
     this._cardDeleteButton.addEventListener('click', () => {
       this._handleDeleteIconClick()
-      //this._deleteCard()
     });
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);

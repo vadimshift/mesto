@@ -80,15 +80,10 @@ function creationCard(item) {
     },
 
     handleDeleteIconClick: () => {
-      popupWithSubmit.open() //открываю сабмит попап
-
-      //submitDeleteButton.addEventListener('click', () => {
-      // popupWithSubmit.setSubmitAction()
-      //card.deleteCard()
-      console.log(card.getMyCardId())
-      //})
-      //popupWithSubmit.setSubmitAction()
-
+      popupWithSubmit.open() 
+      popupWithSubmit.setSubmitAction(() => {
+        card.deleteCard();
+      });
     }
   },
     '.template-place', api);

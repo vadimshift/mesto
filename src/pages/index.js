@@ -19,8 +19,8 @@ import {
   submitButtonChangeAvatar, submitbuttonConfirm
 } from '../utils/constants.js'
 
-
-function requestDownload (button, isLoading, buttonText) {
+//меняем текст и статус кнопки, во время ожидания ответа от сервера
+function requestDownload(button, isLoading, buttonText) {
   if (isLoading) {
     button.textContent = buttonText
     button.setAttribute('disabled', true)
@@ -34,6 +34,7 @@ function requestDownload (button, isLoading, buttonText) {
 //создали экземпляр api
 const api = new Api(options)
 
+//создали экземпляр попапа с подтверждением
 const popupWithSubmit = new PopupWithSubmit('.popup_type_submit-form');
 
 //вставляем значения со страницы в форму редактирования профиля
@@ -68,9 +69,11 @@ api.getProfileInfo()
 function creationCard(item) {
   const card = new Card({
     data: item,
+
     handleCardClick: (name, link) => {
       popupWithImageXl.open(name, link)
     },
+
     handleLikeClick: (isLiked) => {
       if (!isLiked) {
         api.setLikeCard(card.getCardId())
@@ -89,13 +92,24 @@ function creationCard(item) {
             console.log('Ошибка', err.message)
           })
       }
-
     },
 
     handleDeleteIconClick: () => {
       popupWithSubmit.open()
       popupWithSubmit.setSubmitAction(() => {
-        card.deleteCard();
+        //card.deleteCard();
+        requestDownload(submitbuttonConfirm, true, 'Выполнение...')
+        api.delCard(card.getMyCardId())
+      .then(() => {
+        card.deleteCard()
+      })
+      .catch(err => {
+        console.log('Ошибка', err.message);
+      })
+      .finally(() => {
+        requestDownload(submitbuttonConfirm, false, 'Да')
+        formAddPlace.close()
+      });
       });
     }
   },
@@ -169,7 +183,7 @@ const formProfileAvatarEdit = new PopupWithForm({
 }, '.popup_type_change-avatar')
 
 
-
+//
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar')
 
 const popupWithImageXl = new PopupWithImage('.popup_type_image-xl')

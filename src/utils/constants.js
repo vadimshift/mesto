@@ -27,6 +27,12 @@ const elements = document.querySelector('.elements') // контейнер с к
 const popups = document.querySelectorAll('.popup')
 const submitDeleteButton = document.querySelector('.popup__submit-button') // кнопка подтверждения удаления
 
+const submitButtonAddPlace = document.querySelector('.popup__submit-button_type_add-place')
+const submitbuttonEditProfile = document.querySelector('.popup__submit-button_type_edit-profile')
+const submitButtonChangeAvatar = document.querySelector('.popup__submit-button_type_change-avatar')
+const submitbuttonConfirm = document.querySelector('.popup__submit-button_type_submit-form')
+
+
 //Объект со всеми необходимыми классами для валидации форм.
 const allSelectors = {
   formSelector: '.popup__form',
@@ -97,6 +103,7 @@ export {
   popupImageXl, inputPlaceName, inputPlaceLink, addPlaceForm, imageXlLink, imageXlName, allSelectors, initialCards,
   elements, validationAddPlaceForm, enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm,
   popups, options, profileImage, enableValidationChangeAvatarForm, popupChangeAvatar, profileAvatarEditButton,
-  validationChangeAvatarForm, changeAvatarForm, submitDeleteButton
+  validationChangeAvatarForm, changeAvatarForm, submitDeleteButton, submitButtonAddPlace, submitbuttonEditProfile,
+  submitButtonChangeAvatar, submitbuttonConfirm
 }
 

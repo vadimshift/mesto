@@ -15,8 +15,21 @@ import {
   addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage,
   popupChangeAvatar, validationChangeAvatarForm, profileAvatarEditButton, enableValidationChangeAvatarForm,
-  changeAvatarForm, submitDeleteButton
+  changeAvatarForm, submitDeleteButton, submitButtonAddPlace, submitbuttonEditProfile,
+  submitButtonChangeAvatar, submitbuttonConfirm
 } from '../utils/constants.js'
+
+
+function requestDownload (button, isLoading, buttonText) {
+  if (isLoading) {
+    button.textContent = buttonText
+    button.setAttribute('disabled', true)
+  }
+  else {
+    button.textContent = buttonText
+    button.removeAttribute('disabled', false)
+  }
+}
 
 //создали экземпляр api
 const api = new Api(options)
@@ -80,7 +93,7 @@ function creationCard(item) {
     },
 
     handleDeleteIconClick: () => {
-      popupWithSubmit.open() 
+      popupWithSubmit.open()
       popupWithSubmit.setSubmitAction(() => {
         card.deleteCard();
       });
@@ -104,12 +117,17 @@ const renderCards = new Section({
 //добавление новой карточки через форму
 const formAddPlace = new PopupWithForm({
   handleFormSubmit: (data) => {
+    requestDownload(submitButtonAddPlace, true, 'Сохранение...')
     api.setNewCard(data)
       .then(data => {
         creationCard(data)
       })
       .catch(err => {
         console.log('Ошибка', err.message);
+      })
+      .finally(() => {
+        requestDownload(submitButtonAddPlace, false, 'Сохранить')
+        formAddPlace.close()
       });
   }
 }, '.popup_type_add-place');
@@ -117,6 +135,7 @@ const formAddPlace = new PopupWithForm({
 //редактирование профиля через форму
 const formProfileEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
+    requestDownload(submitbuttonEditProfile, true, 'Сохранение...')
     api.setNewProfileInfo(data)
       .then(data => {
         userInfo.setUserInfo(data)
@@ -124,12 +143,17 @@ const formProfileEdit = new PopupWithForm({
       .catch(err => {
         console.log('Ошибка', err.message)
       })
+      .finally(() => {
+        requestDownload(submitbuttonEditProfile, false, 'Сохранить')
+        formProfileEdit.close()
+      });
   }
 }, '.popup_type_edit-profile')
 
 //обновление аватара через форму
 const formProfileAvatarEdit = new PopupWithForm({
   handleFormSubmit: (data) => {
+    requestDownload(submitButtonChangeAvatar, true, 'Сохранение...')
     api.setNewAvatar(data)
       .then(data => {
         userInfo.setUserAvatar(data)
@@ -137,6 +161,10 @@ const formProfileAvatarEdit = new PopupWithForm({
       .catch(err => {
         console.log('Ошибка', err.message)
       })
+      .finally(() => {
+        requestDownload(submitButtonChangeAvatar, false, 'Сохранить')
+        formProfileAvatarEdit.close()
+      });
   }
 }, '.popup_type_change-avatar')
 

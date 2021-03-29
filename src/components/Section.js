@@ -3,7 +3,6 @@ export class Section {
     this._renderedItems = items;
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
-    //this._api = api
   }
 
   addItem(element) {

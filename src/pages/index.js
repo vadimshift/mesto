@@ -12,7 +12,7 @@ import { Api } from '../components/Api.js'
 import {
   profileEditButton, profileForm, profileEnterName, profileEnterAbout, newProfileName,
   newProfileAbout, addPlaceButton, popupEditProfile, popupAddPlace, popupImageXl, inputPlaceName, inputPlaceLink,
-  addPlaceForm, allSelectors, initialCards, imageXlLink, imageXlName, elements, validationAddPlaceForm,
+  addPlaceForm, allSelectors, imageXlLink, imageXlName, elements, validationAddPlaceForm,
   enableValidationAddPlaceForm, validationProfileForm, enableValidationProfileForm, popups, options, profileImage,
   popupChangeAvatar, validationChangeAvatarForm, profileAvatarEditButton, enableValidationChangeAvatarForm,
   changeAvatarForm, submitDeleteButton, submitButtonAddPlace, submitbuttonEditProfile,

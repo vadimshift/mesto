@@ -25,6 +25,7 @@ export class Card {
   }
   //подготовка карточки к публикации
   generateCard() {
+    console.log(this._data)
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.element__image');
     this._cardLikeButton = this._element.querySelector('.element__like-button');
@@ -33,13 +34,8 @@ export class Card {
     this._cardLikesAmount.textContent = this._likes.length;
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
-    //проверяем карточки, которые я лайкнул
-    this._likes.some(data => {
-      if (data._id === this._myId) {
-        this._cardLikeButton.classList.add('element__like-button_active');
-      }
-    });
-
+   
+    this._handleSetLike();
     this._setCardDeleteButton();
     this._setEventListeners();
 
@@ -58,11 +54,17 @@ export class Card {
   }
 
   _handleLikeIcon() {
-     this._handleLikeClick(this.isLiked())
+    this._handleLikeClick(this.isLiked())
+  }
+
+  _handleSetLike() {
+    if (this._likes.some(data => data._id === this._myId)) {
+      this._cardLikeButton.classList.add('element__like-button_active');
+    }
   }
 
   deleteCard() {
-        this._cardDeleteButton.closest('.element').remove();
+    this._cardDeleteButton.closest('.element').remove();
 
   }
 

@@ -19,6 +19,7 @@ import {
   submitButtonChangeAvatar, submitbuttonConfirm
 } from '../utils/constants.js'
 
+
 //меняем текст и статус кнопки, во время ожидания ответа от сервера
 function requestDownload(button, isLoading, buttonText) {
   if (isLoading) {
@@ -43,6 +44,7 @@ function getUserInfoForm() {
   profileEnterName.value = info.name
   profileEnterAbout.value = info.about
 }
+let userId
 //рендерим карточки, полученные с сервера
 api.getCards()
   .then(data => {
@@ -54,17 +56,19 @@ api.getCards()
     console.log('Ошибка', err.message);
   });
 
+
+
 //загрузка информации о профиле с сервера
 api.getProfileInfo()
   .then(data => {
     newProfileName.textContent = data.name
     newProfileAbout.textContent = data.about
     profileImage.src = data.avatar
+    userId = data._id
   })
   .catch(err => {
     console.log('Ошибка', err.message);
   });
-
 
 //вставляем карточку в разметку
 const renderCards = new Section({
@@ -116,7 +120,7 @@ const formProfileAvatarEdit = new PopupWithForm({
     requestDownload(submitButtonChangeAvatar, true, 'Сохранение...')
     api.setNewAvatar(data)
       .then(data => {
-        userInfo.setUserAvatar(data)        
+        userInfo.setUserAvatar(data)
       })
       .catch(err => {
         console.log('Ошибка', err.message)
@@ -176,7 +180,7 @@ function creationCard(item) {
       });
     }
   },
-    '.template-place', api);
+    '.template-place', api, userId);
 
   const cardElement = card.generateCard();
   renderCards.addItem(cardElement)
@@ -216,7 +220,5 @@ formProfileEdit.setEventListeners();
 popupWithImageXl.setEventListeners();
 popupWithSubmit.setEventListeners();
 formProfileAvatarEdit.setEventListeners();
-
-
 
 

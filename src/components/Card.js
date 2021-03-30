@@ -1,10 +1,9 @@
 export class Card {
-  constructor({ data, handleCardClick, handleLikeClick, handleDeleteIconClick }, cardSelector, api) {
+  constructor({ data, handleCardClick, handleLikeClick, handleDeleteIconClick }, cardSelector, api, userId) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._owner = data.owner._id;
-    this._myId = '46a9409ea603dfec2fa8933c';
     this._cardId = data._id;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
@@ -12,6 +11,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._api = api
     this._data = data
+    this._myId = userId
   }
   _getTemplate() {
     // манипуляции с темплейт тегом
@@ -25,7 +25,6 @@ export class Card {
   }
   //подготовка карточки к публикации
   generateCard() {
-    console.log(this._data)
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.element__image');
     this._cardLikeButton = this._element.querySelector('.element__like-button');
@@ -34,7 +33,7 @@ export class Card {
     this._cardLikesAmount.textContent = this._likes.length;
     this._cardImage.src = this._link;
     this._element.querySelector('.element__text-title').textContent = this._name;
-   
+
     this._handleSetLike();
     this._setCardDeleteButton();
     this._setEventListeners();
@@ -65,7 +64,6 @@ export class Card {
 
   deleteCard() {
     this._cardDeleteButton.closest('.element').remove();
-
   }
 
   _setCardDeleteButton() {

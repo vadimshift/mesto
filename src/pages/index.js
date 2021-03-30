@@ -65,61 +65,6 @@ api.getProfileInfo()
     console.log('Ошибка', err.message);
   });
 
-//создаем карточку
-function creationCard(item) {
-  const card = new Card({
-    data: item,
-
-    handleCardClick: (name, link) => {
-      popupWithImageXl.open(name, link)
-    },
-
-    handleLikeClick: (isLiked) => {
-      if (!isLiked) {
-        api.setLikeCard(card.getCardId())
-          .then((data) => {
-            card.hedlelikeCard(data);
-          })
-          .catch(err => {
-            console.log('Ошибка', err.message)
-          })
-      } else if (isLiked) {
-        api.delLikeCard(card.getCardId())
-          .then((data) => {
-            card.hedlelikeCard(data);
-          })
-          .catch(err => {
-            console.log('Ошибка', err.message)
-          })
-      }
-    },
-
-    handleDeleteIconClick: () => {
-      popupWithSubmit.open()
-      popupWithSubmit.setSubmitAction(() => {
-        requestDownload(submitbuttonConfirm, true, 'Выполнение...')
-        api.delCard(card.getMyCardId())
-          .then(() => {
-            card.deleteCard()
-          })
-          .then(() => {
-            formAddPlace.close()
-          })
-          .catch(err => {
-            console.log('Ошибка', err.message);
-          })
-          .finally(() => {
-            requestDownload(submitbuttonConfirm, false, 'Да')
-          });
-      });
-    }
-  },
-    '.template-place', api);
-
-  const cardElement = card.generateCard();
-  renderCards.addItem(cardElement)
-
-}
 
 //вставляем карточку в разметку
 const renderCards = new Section({
@@ -171,7 +116,7 @@ const formProfileAvatarEdit = new PopupWithForm({
     requestDownload(submitButtonChangeAvatar, true, 'Сохранение...')
     api.setNewAvatar(data)
       .then(data => {
-        userInfo.setUserAvatar(data)
+        userInfo.setUserAvatar(data)        
       })
       .catch(err => {
         console.log('Ошибка', err.message)
@@ -183,6 +128,60 @@ const formProfileAvatarEdit = new PopupWithForm({
   }
 }, '.popup_type_change-avatar')
 
+
+//создаем карточку
+function creationCard(item) {
+  const card = new Card({
+    data: item,
+
+    handleCardClick: (name, link) => {
+      popupWithImageXl.open(name, link)
+    },
+
+    handleLikeClick: (isLiked) => {
+      if (!isLiked) {
+        api.setLikeCard(card.getCardId())
+          .then((data) => {
+            card.hedlelikeCard(data);
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message)
+          })
+      } else if (isLiked) {
+        api.delLikeCard(card.getCardId())
+          .then((data) => {
+            card.hedlelikeCard(data);
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message)
+          })
+      }
+    },
+
+    handleDeleteIconClick: () => {
+      popupWithSubmit.open()
+      popupWithSubmit.setSubmitAction(() => {
+        requestDownload(submitbuttonConfirm, true, 'Выполнение...')
+        api.delCard(card.getMyCardId())
+          .then(() => {
+            card.deleteCard()
+            popupWithSubmit.close()
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message);
+          })
+          .finally(() => {
+            requestDownload(submitbuttonConfirm, false, 'Да')
+          });
+      });
+    }
+  },
+    '.template-place', api);
+
+  const cardElement = card.generateCard();
+  renderCards.addItem(cardElement)
+
+}
 
 //
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar')

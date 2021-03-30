@@ -62,13 +62,8 @@ export class Card {
   }
 
   deleteCard() {
-    //this._api.delCard(this.getMyCardId())
-      //.then(() => {
         this._cardDeleteButton.closest('.element').remove();
-      //})
-      //.catch(err => {
-        //console.log('Ошибка', err.message);
-      //});
+
   }
 
   _setCardDeleteButton() {

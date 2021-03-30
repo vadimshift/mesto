@@ -97,19 +97,20 @@ function creationCard(item) {
     handleDeleteIconClick: () => {
       popupWithSubmit.open()
       popupWithSubmit.setSubmitAction(() => {
-        //card.deleteCard();
         requestDownload(submitbuttonConfirm, true, 'Выполнение...')
         api.delCard(card.getMyCardId())
-      .then(() => {
-        card.deleteCard()
-      })
-      .catch(err => {
-        console.log('Ошибка', err.message);
-      })
-      .finally(() => {
-        requestDownload(submitbuttonConfirm, false, 'Да')
-        formAddPlace.close()
-      });
+          .then(() => {
+            card.deleteCard()
+          })
+          .then(() => {
+            formAddPlace.close()
+          })
+          .catch(err => {
+            console.log('Ошибка', err.message);
+          })
+          .finally(() => {
+            requestDownload(submitbuttonConfirm, false, 'Да')
+          });
       });
     }
   },

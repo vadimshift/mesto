@@ -1,11 +1,10 @@
 export class Api {
   constructor(options) {
-    this._userUrl = options.userUrl
-    this._cardsUrl = options.cardsUrl
-    this._cardsUrlLike = options.cardsUrlLike
-    this._userAvatar = options.userAvatar
-    this._headers = options.headers
-
+    this._userUrl = options.userUrl;
+    this._cardsUrl = options.cardsUrl;
+    this._cardsUrlLike = options.cardsUrlLike;
+    this._userAvatar = options.userAvatar;
+    this._headers = options.headers;
   }
 
   _parseResponse(res) {
@@ -19,82 +18,80 @@ export class Api {
     return fetch(this._cardsUrl, {
       headers: this._headers,
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   getProfileInfo() {
     return fetch(this._userUrl, {
       headers: this._headers,
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   setNewProfileInfo(data) {
     return fetch(this._userUrl, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.about
+        about: data.about,
       }),
     })
-
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   setNewCard(formData) {
     return fetch(this._cardsUrl, {
-      method: 'POST',
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: formData.name,
         link: formData.link,
       }),
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   delCard(id) {
     return fetch(`${this._cardsUrl}/${id}`, {
-      method: 'DELETE',
-      headers: this._headers
+      method: "DELETE",
+      headers: this._headers,
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   setLikeCard(id) {
     return fetch(`${this._cardsUrlLike}/${id}`, {
-      method: 'PUT',
-      headers: this._headers
+      method: "PUT",
+      headers: this._headers,
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   delLikeCard(id) {
     return fetch(`${this._cardsUrlLike}/${id}`, {
-      method: 'DELETE',
-      headers: this._headers
+      method: "DELETE",
+      headers: this._headers,
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
 
   setNewAvatar(data) {
     return fetch(this._userAvatar, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.link
+        avatar: data.link,
       }),
     })
-      .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
+      .then((res) => this._parseResponse(res))
+      .catch((err) => Promise.reject(err));
   }
-
 }

@@ -1,5 +1,10 @@
 export class Card {
-  constructor({ data, handleCardClick, handleLikeClick, handleDeleteIconClick }, cardSelector, api, userId) {
+  constructor(
+    { data, handleCardClick, handleLikeClick, handleDeleteIconClick },
+    cardSelector,
+    api,
+    userId
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -9,16 +14,15 @@ export class Card {
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-    this._api = api
-    this._data = data
-    this._myId = userId
+    this._api = api;
+    this._data = data;
+    this._myId = userId;
   }
   _getTemplate() {
     // манипуляции с темплейт тегом
     const cardElement = document
       .querySelector(this._cardSelector)
-      .content
-      .querySelector('.element')
+      .content.querySelector(".element")
       .cloneNode(true);
 
     return cardElement;
@@ -26,13 +30,19 @@ export class Card {
   //подготовка карточки к публикации
   generateCard() {
     this._element = this._getTemplate();
-    this._cardImage = this._element.querySelector('.element__image');
-    this._cardLikeButton = this._element.querySelector('.element__like-button');
-    this._cardDeleteButton = this._element.querySelector('.element__delete-button');
-    this._cardLikesAmount = this._element.querySelector('.element__like-amount');
+    this._cardImage = this._element.querySelector(".element__image");
+    this._cardLikeButton = this._element.querySelector(".element__like-button");
+    this._cardDeleteButton = this._element.querySelector(
+      ".element__delete-button"
+    );
+    this._cardLikesAmount = this._element.querySelector(
+      ".element__like-amount"
+    );
     this._cardLikesAmount.textContent = this._likes.length;
     this._cardImage.src = this._link;
-    this._element.querySelector('.element__text-title').textContent = this._name;
+    this._element.querySelector(
+      ".element__text-title"
+    ).textContent = this._name;
 
     this._handleSetLike();
     this._setCardDeleteButton();
@@ -41,59 +51,59 @@ export class Card {
     return this._element;
   }
   _setEventListeners() {
-    this._cardLikeButton.addEventListener('click', () => {
+    this._cardLikeButton.addEventListener("click", () => {
       this._handleLikeIcon(this.isLiked);
     });
-    this._cardDeleteButton.addEventListener('click', () => {
-      this._handleDeleteIconClick()
+    this._cardDeleteButton.addEventListener("click", () => {
+      this._handleDeleteIconClick();
     });
-    this._cardImage.addEventListener('click', () => {
+    this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
     });
   }
 
   _handleLikeIcon() {
-    this._handleLikeClick(this.isLiked())
+    this._handleLikeClick(this.isLiked());
   }
 
   _handleSetLike() {
-    if (this._likes.some(data => data._id === this._myId)) {
-      this._cardLikeButton.classList.add('element__like-button_active');
+    if (this._likes.some((data) => data._id === this._myId)) {
+      this._cardLikeButton.classList.add("element__like-button_active");
     }
   }
 
   deleteCard() {
-    this._cardDeleteButton.closest('.element').remove();
+    this._cardDeleteButton.closest(".element").remove();
   }
 
   _setCardDeleteButton() {
     if (this._myId === this._owner) {
-      this._cardDeleteButton.classList.toggle('element__delete-button_active')
+      this._cardDeleteButton.classList.toggle("element__delete-button_active");
     }
   }
 
   getMyCardId() {
     if (this._myId === this._owner) {
-      return this._cardId
+      return this._cardId;
     }
   }
 
   getCardId() {
-    return this._cardId = this._data._id
+    return (this._cardId = this._data._id);
   }
 
   isLiked() {
-    if (this._cardLikeButton.classList.contains('element__like-button_active')) {
+    if (
+      this._cardLikeButton.classList.contains("element__like-button_active")
+    ) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
 
   hedlelikeCard(data) {
-    this._cardLikeButton.classList.toggle('element__like-button_active');
+    this._cardLikeButton.classList.toggle("element__like-button_active");
     this._cardLikesAmount.textContent = data.likes.length;
   }
 }
-

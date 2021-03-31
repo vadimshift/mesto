@@ -46,6 +46,8 @@ import {
   submitbuttonConfirm,
 } from "../utils/constants.js";
 
+let userId; //переменная, для записи id пользователя
+
 //меняем текст и статус кнопки, во время ожидания ответа от сервера
 function requestDownload(button, isLoading, buttonText) {
   if (isLoading) {
@@ -69,27 +71,20 @@ function getUserInfoForm() {
   profileEnterName.value = info.name;
   profileEnterAbout.value = info.about;
 }
-let userId;
-//рендерим карточки, полученные с сервера
-api
-  .getCards()
-  .then((data) => {
-    data.forEach((item) => {
-      creationCard(item);
-    });
-  })
-  .catch((err) => {
-    console.log("Ошибка", err.message);
-  });
 
-//загрузка информации о профиле с сервера
-api
-  .getProfileInfo()
-  .then((data) => {
-    newProfileName.textContent = data.name;
-    newProfileAbout.textContent = data.about;
-    profileImage.src = data.avatar;
-    userId = data._id;
+//запрашиваем данные с сервера для их отрисовки на странице
+Promise.all([
+  api.getProfileInfo(),
+  api.getCards(),
+])
+  .then(([userData, initialCards]) => {
+    newProfileName.textContent = userData.name;
+    newProfileAbout.textContent = userData.about;
+    profileImage.src = userData.avatar;
+    userId = userData._id;
+    initialCards.forEach((item) => {
+      creationCard(item);
+  })
   })
   .catch((err) => {
     console.log("Ошибка", err.message);

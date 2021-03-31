@@ -73,10 +73,7 @@ function getUserInfoForm() {
 }
 
 //запрашиваем данные с сервера для их отрисовки на странице
-Promise.all([
-  api.getProfileInfo(),
-  api.getCards(),
-])
+Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([userData, initialCards]) => {
     newProfileName.textContent = userData.name;
     newProfileAbout.textContent = userData.about;
@@ -84,7 +81,7 @@ Promise.all([
     userId = userData._id;
     initialCards.forEach((item) => {
       creationCard(item);
-  })
+    });
   })
   .catch((err) => {
     console.log("Ошибка", err.message);

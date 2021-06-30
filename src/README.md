@@ -1,6 +1,6 @@
-# Проект 5: Место
+# Место
 
-Страница свёрстана согласно макету в Figma, ниже будет ссылка на макет: https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5
+Страница свёрстана согласно макету в Figma, ссылка на макет: https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5
 
 Вёрстка адаптивная.
 
